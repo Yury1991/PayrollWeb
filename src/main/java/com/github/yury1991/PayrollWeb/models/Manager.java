@@ -1,13 +1,14 @@
-package com.github.yury1991.PayrollWeb.Logic;
+package com.github.yury1991.PayrollWeb.models;
 
 public class Manager {
 	private String name;
+    private String surname;
+    private String patronymic;
 	private ManagerSalesProfit managerSalesProfit;
 	private ManagerClientProfit managerClientProfit;
 	private ManagerBusinessProfit managerBusinessProfit;
 	private TotalSalesProfit totalSalesProfit;
-//	private TimeRate timeRate;
-	private final double WAREHOUSE_PAYMENT = 7000;
+	private final short WAREHOUSE_PAYMENT = 7000;
 	private double managerSalary;	
 	
 	public Manager() {
@@ -16,6 +17,8 @@ public class Manager {
 	public Manager(String name) {
 		this.name = name;
 	}
+	
+	
 	
 	public Manager(String name, ManagerSalesProfit managerSalesProfit,
 					ManagerClientProfit managerClientProfit, 
@@ -34,6 +37,19 @@ public class Manager {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getSurname() {
+		return surname;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public String getPatronymic() {
+		return patronymic;
+	}
+	public void setPatronymic(String patronymic) {
+		this.patronymic = patronymic;
 	}
 	
 	public void setSalary(double  salary) {
@@ -58,4 +74,5 @@ public class Manager {
 	public void setTimeRate(TimeRate timeRate) {
 		this.timeRate = timeRate;
 	}	*/
+	
 }

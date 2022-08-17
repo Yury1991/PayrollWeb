@@ -1,4 +1,4 @@
-package com.github.yury1991.PayrollWeb.Logic;
+package com.github.yury1991.PayrollWeb.models;
 
 //Коэффициент участия в сделке
 public class ParticipationRate implements Rate {

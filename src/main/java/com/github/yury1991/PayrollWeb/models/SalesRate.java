@@ -1,6 +1,7 @@
-package com.github.yury1991.PayrollWeb.Logic;
+package com.github.yury1991.PayrollWeb.models;
 
 public class SalesRate implements Rate{
+	
 	private double equipmentProfit;
 	private double warehouseProfit;
 	private double planProfit;
@@ -31,13 +32,8 @@ public class SalesRate implements Rate{
 		this.planProfit = plan;
 	}
 	
+	@Override
 	public double getRate() {		
 		return (equipmentProfit - warehouseProfit)/planProfit;
-	}
-	
-	
-	
-	
-	
-	
+	}	
 }

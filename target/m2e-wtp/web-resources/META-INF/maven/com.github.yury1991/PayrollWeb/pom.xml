@@ -14,7 +14,7 @@
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.source>11</maven.compiler.source>
     
-    <!-- Dependence versions -->
+    <!-- Dependencies versions -->
     <spring.version>5.3.22</spring.version>
     <hibernate.version>5.6.10.Final</hibernate.version>
     <postgresql.version>42.4.1</postgresql.version>
@@ -65,7 +65,7 @@
 	    <version>${thymeleaf.version}</version>
 	</dependency>
 		
-		<!-- Jackson -->
+	<!-- Jackson -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-databind</artifactId>

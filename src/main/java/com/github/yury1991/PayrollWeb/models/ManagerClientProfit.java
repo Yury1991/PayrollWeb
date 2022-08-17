@@ -1,4 +1,4 @@
-package com.github.yury1991.PayrollWeb.Logic;
+package com.github.yury1991.PayrollWeb.models;
 
 public class ManagerClientProfit implements ManagerProfit {
 	private final short CLIENT_PAYMENT = 10000;
