@@ -1,35 +1,46 @@
 package com.github.yury1991.PayrollWeb.models;
 
+// коэффициент лояльности клиента
 public class ClientRate implements Rate {
+	// флаг были ли ли жалобы
 	private boolean isComplaint;
-	private double complaintQuantity;
-	private final double FULL_CLIENT_COEFFICIENT = 1.2;
-	private final double COMPLAINT_COEFFCIENT = 0.1;	
+	// количество жалоб
+	private int complaintQuantity;
+	// максимальное значение коэффициента лояльности 
+	private final double MAX_CLIENT_COEFFICIENT = 1.2;
+	// значение одно жалобы
+	private final double COMPLAINT_COEFFICIENT = 0.1;	
 	
-	public ClientRate () {
-		 
+	
+	public ClientRate(boolean isComplaint, int complaintQuantity) {
+		this.isComplaint = isComplaint;
+		this.complaintQuantity = complaintQuantity;
 	}
 	
-	public boolean isComplaint() {
+	public boolean getIsComplaint() {
 		return isComplaint;
 	}
 	
-	public void setComplaint(boolean isComplaint) {
+	public void setIsComplaint(boolean isComplaint) {
 		this.isComplaint = isComplaint;
 	}
 	public double getComplaintQuantity() {
 		return complaintQuantity;
 	}
-	public void setComplaintQuantity(double complaintQuantity) {
+	public void setComplaintQuantity(short complaintQuantity) {
 		this.complaintQuantity = complaintQuantity;
 	}
-	
-	public double getFULL_CLIENT_COEFFICIENT() {
-		return FULL_CLIENT_COEFFICIENT;
+		
+	public double getMAX_CLIENT_COEFFICIENT() {
+		return MAX_CLIENT_COEFFICIENT;
 	}
 
 	public double getRate() {		
-		return (FULL_CLIENT_COEFFICIENT - (complaintQuantity *
-				COMPLAINT_COEFFCIENT));
+		if(isComplaint == false) {
+			return MAX_CLIENT_COEFFICIENT;
+		} else {
+			return (MAX_CLIENT_COEFFICIENT - (complaintQuantity *
+					COMPLAINT_COEFFICIENT));
+		}		
 	}	
 }

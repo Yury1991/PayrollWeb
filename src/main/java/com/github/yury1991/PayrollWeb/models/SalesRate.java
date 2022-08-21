@@ -1,39 +1,40 @@
 package com.github.yury1991.PayrollWeb.models;
 
+// коэффициент с продаж
 public class SalesRate implements Rate{
-	
-	private double equipmentProfit;
-	private double warehouseProfit;
-	private double planProfit;
-	
-	
-	public SalesRate(double equipmentProfit, double warehouseProfit, double planProfit) {
-		this.equipmentProfit = equipmentProfit;
-		this.warehouseProfit = warehouseProfit;
-		this.planProfit = planProfit;
+	// общая выручка за месяц
+	private double totalMonthProfit;
+	// выручка за месяц за оборудование
+	private double equipmentMonthProfit;
+	// план продаж
+	private double planMonthProfit;
+		
+	public SalesRate(double totalMonthProfit, double equipmentMonthProfit, double planMonthProfit) {
+		this.totalMonthProfit = totalMonthProfit;
+		this.equipmentMonthProfit = equipmentMonthProfit;
+		this.planMonthProfit = planMonthProfit;
 	}
 	
-	public double getEquipmentProfit() {
-		return equipmentProfit;
+	public double getTotalMonthProfit() {
+		return totalMonthProfit;
 	}
-	public void setEquipmentProfit(double equipmentProfit) {
-		this.equipmentProfit = equipmentProfit;
+	public void setTotalMonthProfit(double equipmentProfit) {
+		this.totalMonthProfit = equipmentProfit;
 	}
-	public double getWarehouseProfit() {
-		return warehouseProfit;
+	public double getEquipmentMonthProfit() {
+		return equipmentMonthProfit;
 	}
-	public void setWarehouseProfit(double warehouseProfit) {
-		this.warehouseProfit = warehouseProfit;
+	public void setEquipmentMonthProfit(double warehouseProfit) {
+		this.equipmentMonthProfit = warehouseProfit;
 	}
 	public double getPlan() {
-		return planProfit;
+		return planMonthProfit;
 	}
 	public void setPlan(double plan) {
-		this.planProfit = plan;
-	}
+		this.planMonthProfit = plan;
+	}	
 	
-	@Override
 	public double getRate() {		
-		return (equipmentProfit - warehouseProfit)/planProfit;
+		return ((totalMonthProfit - equipmentMonthProfit)/planMonthProfit);
 	}	
 }

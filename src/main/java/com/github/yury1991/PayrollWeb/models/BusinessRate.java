@@ -1,58 +1,52 @@
 package com.github.yury1991.PayrollWeb.models;
 
+// коэффициент оценки бизнес-процессов
 public class BusinessRate implements Rate {
+	// флаг были ли ошибки
 	private boolean isMistake;
-	private boolean isSmallMistake;
-	private short mistakeQuantity;
-	private short smallMistakeQuantity;
-	private final double BUSINESS_FULL_COEFFICIENT = 1.2 ;	
-//	private final double MISTAKE_COEFFICIENT = 0.1;
-	private final int SMALL_MISTAKE_PRICE = 300;	
+	// флаг были ли незначительные ошибки	
+	private int mistakeQuantity;
+	// коэффициент ошибки штраф
+	private double mistakeCoef;
+	// количество незначительных ошибок	
+	private final double BUSINESS_FULL_COEFFICIENT = 1.2 ;
+
+	public BusinessRate(boolean isMistake, int mistakeQuantity, double mistakeCoef) {
+		this.isMistake = isMistake;		
+		this.mistakeQuantity = mistakeQuantity;	
+		this.mistakeCoef = mistakeCoef;
+	}
 	
-	public boolean isMistake() {
+	public boolean getIsMistake() {
 		return isMistake;
 	}
 	public void setMistake(boolean isMistake) {
 		this.isMistake = isMistake;
 	}
-	public boolean isSmallMistake() {
-		return isSmallMistake;
-	}
-	public void setSmallMistake(boolean isSmallMistake) {
-		this.isSmallMistake = isSmallMistake;
-	}
-	public short getMistakeQuantity() {
+	
+	public int getMistakeQuantity() {	
 		if(isMistake == false) {
-			mistakeQuantity = 0;
-		} else {
-			mistakeQuantity = 3;			
+			return 0;
 		}
-		return mistakeQuantity;
+		else {
+			return mistakeQuantity;
+		}
 	}
 	public void setMistakeQuantity(short mistakeQuantity) {
 		this.mistakeQuantity = mistakeQuantity;
 	}
-	public short getSmallMistakeQuantity() {
-		if(isSmallMistake == false) {
-			smallMistakeQuantity = 0;
-		} else {
-			smallMistakeQuantity = 3;			
-		}
-		return smallMistakeQuantity;
-	}
-	public void setSmallMistakeQuantity(short smallMistakeQuantity) {
-		this.smallMistakeQuantity = smallMistakeQuantity;
-	}
+	
 	public double getBusinessFullCoefficient() {
 		return BUSINESS_FULL_COEFFICIENT;
 	}
-	
-	public double calculatePenaltyCost() {
-		return (smallMistakeQuantity * SMALL_MISTAKE_PRICE);
+		public double getMistakeCoef() {
+		return mistakeCoef;
 	}
-	
-	public double getRate() {
-		//return (double) (BUSSINESS_FULL_COEFFICIENT - (mistakeQuantity * MISTAKE_COEFFICIENT));
-		return BUSINESS_FULL_COEFFICIENT;
+	public void setMistakeCoef(double mistakeCoef) {
+		this.mistakeCoef = mistakeCoef;
+	}	
+			
+	public double getRate() {		
+		return (BUSINESS_FULL_COEFFICIENT - (getMistakeQuantity() * getMistakeCoef()));
 	}	
 }
