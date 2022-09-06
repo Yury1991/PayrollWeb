@@ -1,46 +1,37 @@
 <!DOCTYPE html>
-<html lang = "en" xmlns:th = "https://www.thymeleaf.org">
+<html xmlns:th = "http://www.thymeleaf.org">
 	<head>
-		<meta charset="UTF-8">
-		<title>Приложение зарплата</title>
-		<style>
-			table, th, td {
-  			border: 1px solid black;
-  			border-collapse: collapse;
-			}
-			
-			table.center {
-			  margin-left: auto; 
-			  margin-right: auto;
-			}
-		</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
+		 	th:href="@{/css/payroll.css}" />
+		<title>Приложение зарплата</title>	
 	</head>
 	
 	<body>		
-		<table class = "center" style = "width:80%">
+		<table class = "center">
 		<tr>
 		<th> 
-			<h2>Меню</h2>
+			<div>
+				<h2>Меню</h2>
+			</div>
 		</th>
-		</tr>
-		<tr>	
+		</tr>		 
+		
+		<tr height = "100px">	
 			<td>
-				<form>
-					<button onClick = "window.location.href = '/api/managers'"> Расчет зарплаты </button> 
-				</form>
+				 <form>
+				 	<div>
+				 		<a th:href = "@{/api/managers}"> Менеджеры </a>
+				 	</div>		
+				</form>				
 			</td>
-		</tr>
-		<tr>
+		</tr>		
+		<tr height = "100px">
 			<td> 
 				<form>
-					<button>Просмотр зарплаты </button> 
-				</form>
-			</td>
-		</tr>	
-		<tr>
-			<td> 
-				<form>
-					<button>Настройки</button> 
+					<div>
+						<a th:href = "@{/api/settings}"> Настройки </a>
+					</div>
 				</form>
 			</td>
 		</tr>		 

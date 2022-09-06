@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
+		 	th:href="@{/css/payroll.css}" />
+		<title>Информация о менеджере</title>	
+</head>
+<body>
+	<h1 class = "center">Информация о менеджере</h1>
+		<table class =  "center">
+			<tr>
+				<th> 
+					<div>
+						<h2 align = "center">Информация о менеджере</h2>
+					</div>
+				</th>		
+			</tr>
+			<tr> 
+				<th>No</th>			
+				<th>Фамилия</th>
+				<th>Имя</th>
+				<th>Отчество</th>			
+			</tr>
+		<!--  	<tr th:method = "GET" th:object = "${manager}"> -->
+			<tr>
+				<td th:text = "${manager.getId()}">value</td>			
+				<td th:text = "${manager.getSurname()}">value</td>
+				<td th:text = "${manager.getName()}">value</td>
+				<td th:text = "${manager.getPatronymic()}">value</td>	
+			</tr>
+		</table>	
+		<br><br>
+		<table class = "center">
+		<tr>	
+			<th height = "100px">				
+				<a th:href = "@{/api/managers}">Назад</a>		
+			</th>			
+		</tr>
+	</table>			
+		
+</body>
+
+
+</html>

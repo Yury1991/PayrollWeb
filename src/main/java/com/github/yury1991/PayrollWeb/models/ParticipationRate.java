@@ -140,6 +140,5 @@ public class ParticipationRate implements Rate {
 	public double getRate() {
 		return (MIN_PARTICIPATION_RATE + getFindClientCoef() + 
 				getPositiveDecisionCoef() + getDiscussionCoef() + getDocumentationCoef() + getMaintenanceShipmentCoef());				
-	}
-	
+	}	
 }
