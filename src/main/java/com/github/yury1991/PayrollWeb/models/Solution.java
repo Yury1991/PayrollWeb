@@ -1,9 +1,12 @@
-/*package com.github.yury1991.PayrollWeb.models;
+package com.github.yury1991.PayrollWeb.models;
+
+
+import com.github.yury1991.PayrollWeb.dao.PaymentDAOImpl;
 
 public class Solution  {
-	public static void main(String [] args) {	
+	public static void main(String [] args) throws Exception {	
 		// создание коэффициента с продаж
-		SalesRate salesRate = new SalesRate(78000, 50000, 5600);
+	/*	SalesRate salesRate = new SalesRate(78000, 50000, 5600);
 		SalesProfit managerSalesProfit = new SalesProfit (11000, salesRate);
 		System.out.println("доход менеджера с личных продаж " + managerSalesProfit.getProfit() + " руб.");
 		ClientRate clientRate = new ClientRate(true, 2);
@@ -18,9 +21,13 @@ public class Solution  {
 		Manager manager = new Manager("Иванов", "Иван", "Иванович", managerSalesProfit, managerClientProfit, managerBusinessProfit, managerPieceEquipmentProfit );
 		System.out.println(manager.toString());*/
 		
-/*	}
+		PaymentDAOImpl paymentDAOImpl = new PaymentDAOImpl();
+		Payment payment = paymentDAOImpl.getPayment();
+		System.out.println(payment.toString());
+		
+	}
 	
 	
 		
 	
-}*/
+}

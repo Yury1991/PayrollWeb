@@ -6,7 +6,32 @@
 		 	th:href="@{/css/payroll.css}" />
 		 <title>Настройки</title>
 	</head>
-	
-	<body>	
+	<body>		
+		<table class = "center">
+		<tr>
+		<th> 			
+			<h2 class ="center">Настройки</h2>			
+		</th>
+		</tr>		 
+		
+		<tr height = "100px">	
+			<td>
+				 <form>
+				 	<div>
+				 		<a th:href = "@{/api/settings/payments}"> Настройка выплат </a>
+				 	</div>		
+				</form>				
+			</td>
+		</tr>		
+		<tr height = "100px">
+			<td> 
+				<form>
+					<div>
+						<a th:href = "@{/api/settings/coefficients}"> Настройка коэффициентов </a>
+					</div>
+				</form>
+			</td>
+		</tr>				
+		 </table>		
 	</body>
 </html>

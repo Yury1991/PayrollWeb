@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -19,11 +20,12 @@ import com.github.yury1991.PayrollWeb.models.Manager;
 import com.github.yury1991.PayrollWeb.service.ManagerService;
 
 @Controller
-public class ManagersController {
+public class ManagersController {	
 	
 	@Autowired
 	private ManagerService managerService;
-
+		
+	// ------------------ Методы контроллера ---------------------------------
 	@GetMapping("/api/managers")
 	public String getAllManagers(Model model) {
 		List<Manager> allManagers = managerService.getAllManagers();
@@ -31,7 +33,7 @@ public class ManagersController {
 		return "managers";
 	}
 	
-	@GetMapping("api/managers/{id}")
+	@GetMapping("/api/managers/{id}")
 	public String getManager(Model model, @PathVariable("id") int id) {
 		model.addAttribute("manager", managerService.getManager(id));
 		return "manager-info";
@@ -49,7 +51,6 @@ public class ManagersController {
 		return "redirect:/api/managers";
 	}	
 	
-	@GetMapping("/api/managers/{id}/edit")
 	public String editManager(Model model, @PathVariable("id") int id) {
 		model.addAttribute("manager", managerService.getManager(id));
 		return "manager-edit";
@@ -61,7 +62,7 @@ public class ManagersController {
 		return "redirect:/api/managers";
 	}	
 	
-	@DeleteMapping("api/managers/{id}")
+	@DeleteMapping("/api/managers/{id}")
 	public String deleteManager(@PathVariable("id") int id) {
 		managerService.deleteManager(id);
 		return "redirect:/api/managers";

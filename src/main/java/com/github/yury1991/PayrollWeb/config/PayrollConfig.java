@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -35,6 +37,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @ComponentScan("com.github.yury1991.PayrollWeb")
 @EnableWebMvc
 @EnableTransactionManagement
+@PropertySource("classpath:payment.properties")
 public class PayrollConfig implements WebMvcConfigurer {
 	
 	private final ApplicationContext applicationContext;
@@ -73,8 +76,16 @@ public class PayrollConfig implements WebMvcConfigurer {
 	        registry.viewResolver(resolver);
 	    }	
 	 
-	 // Добавление локализации 
 	 @Bean
+	 public static PropertySourcesPlaceholderConfigurer properties() {
+	     PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+	     configurer.setIgnoreUnresolvablePlaceholders(true);
+	     configurer.setIgnoreResourceNotFound(true);
+	     return configurer;
+	 }
+	 
+	 // Добавление локализации 
+	/* @Bean
 	 public LocaleResolver localeResolver() {
 		 SessionLocaleResolver localeResolver = new SessionLocaleResolver();
 		 localeResolver.setDefaultLocale(new Locale("ru"));
@@ -91,7 +102,7 @@ public class PayrollConfig implements WebMvcConfigurer {
 	  @Override
 	  public void addInterceptors(InterceptorRegistry registry) {
 	      registry.addInterceptor(localeChangeInterceptor());
-	  }
+	  } */
 	 
 // ------------------ Hibernate -------------------------------------------------------
 	 @Bean
@@ -127,13 +138,15 @@ public class PayrollConfig implements WebMvcConfigurer {
 			return transactionManager;
 		}
 		
+		//<context:property-placeholder location="classpath*:my.properties"/>
+		
 		//Регистрация обработчиков для обслуживания статических ресурсов 
 		 @Override
 		    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			 	registry.addResourceHandler("/css/**")
 		                .addResourceLocations("/WEB-INF/css/");	
 			 	registry.addResourceHandler("/resources/**")
-			 			.addResourceLocations("/resources/");	 
+			 			.addResourceLocations("/resources/");
 		    }
 		 
 //----------------Spring REST ----------------------

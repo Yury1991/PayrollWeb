@@ -46,10 +46,5 @@ public class ManagerServiceImpl implements ManagerService {
 	public void deleteManager(int id) {
 		managerDAO.deleteManager(id);
 		
-	}
-
-	
-
-	
-	
+	}	
 }

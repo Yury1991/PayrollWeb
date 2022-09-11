@@ -41,7 +41,7 @@ public class PayrollWebInitializer extends AbstractAnnotationConfigDispatcherSer
 	}	
 	
 	private void registerHiddenFieldFilter(ServletContext aContext) {
-		aContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
+		aContext.addFilter("hiddenHttpMethodFilter", 
+				new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
 	}
-
 }

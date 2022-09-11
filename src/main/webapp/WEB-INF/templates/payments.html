@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+	<head>
+		<meta charset = "UTF-8" name="viewport" content="width=device-width, initial-scale=1" >
+		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
+		 	th:href="@{/css/payroll.css}" />
+		 <title>Информация</title>
+	</head>
+	
+	<body>			
+		<h1>Выплаты</h1>		
+				<p th:text="${payment.getSalesPayment()}"/> 			
+				<br><br>
+				<p th:text="${payment.getClientPayment()}"/>
+				<br><br>
+				<p th:text="${payment.getBusinessPayment()}"/>
+				<br><br>
+				<p th:text="${payment.getStockPayment()}"/>
+				<br><br>
+				<input type="submit" class = "btn-green" style = "font-size:20px" 
+					value = "Изменить"/>	
+				<br><br>
+				<a th:href = "@{/api/setiings}"	 class = "button">Назад</a>		
+	</body>
+</html>
