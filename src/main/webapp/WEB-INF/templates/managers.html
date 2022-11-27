@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html  xmlns:th = "http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Выбор сотрудника</title>
+	<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
+		 	th:href="@{/css/payroll.css}" />
+</head>
+<body>	
+	<table class =  "center">
+		<tr>
+			<th> 
+				<div>
+					<h2 align = "center">Выберите сотрудника</h2>
+				</div>
+			</th>		
+		</tr>
+		<tr> 
+			<th>No</th>			
+			<th>Фамилия</th>
+			<th>Имя</th>
+			<th>Отчество</th>			
+		</tr>
+		<tr th:each = "manager: ${allManagers}">
+			<td th:text = "${manager.id}"></td>			
+			<td th:text = "${manager.surname}"></td>
+			<td th:text = "${manager.name}"></td>
+			<td th:text = "${manager.patronymic}"></td>		
+			<td>							
+				<div>	
+					<button class = "button">Рассчитать</button>		
+				</div>
+			</td>
+			<td>			
+				<form th:method ="GET" th:action = "@{/api/managers/{id}/edit(id = ${manager.getId()})}" th:object = "${manager}" >
+					<input type = "submit"	 class = "button" value = "Изменить" >
+				</form>		
+			</td>
+			<td>
+				<div>
+					<form th:method = "DELETE" th:action = "@{/api/managers/{id}(id=${manager.getId()})}" >									 	
+					  	<input type = "submit" class = "btn-red" value = "Удалить" >				
+					</form>		
+				</div>				
+			</td>
+		</tr>	
+	</table>
+	<br>
+	<table class = "center">
+		<tr height = "100px">			
+			<th>				
+				<a th:href = "@{/api/managers/new}">Добавить нового менеджера</a>				
+				
+			</th>		
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	<table class = "center">
+		<tr>	
+			<th height = "100px">				
+				<a th:href = "@{/api}">Назад</a>		
+			</th>			
+		</tr>
+	</table>	
+</body>
+</html>
