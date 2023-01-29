@@ -1,7 +1,6 @@
 package com.github.yury1991.PayrollWeb.config;
 
 import java.beans.PropertyVetoException;
-import java.util.Locale;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -11,41 +10,36 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+// Аннотация Configuration указывает, что данный класс содержит определение компонентов. 
 @Configuration
 @ComponentScan("com.github.yury1991.PayrollWeb")
 @EnableWebMvc
 @EnableTransactionManagement
-@PropertySource("classpath:payment.properties")
+//@PropertySource("classpath:payment.properties")
 public class PayrollConfig implements WebMvcConfigurer {
 	
-	private final ApplicationContext applicationContext;
+	private final ApplicationContext applicationContext;	
 	
 	@Autowired
 	public PayrollConfig(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
-	}
+	}	
 	
 // ------------------- Thymeleaf -----------------------------------------
 	@Bean
@@ -56,6 +50,7 @@ public class PayrollConfig implements WebMvcConfigurer {
 	    templateResolver.setSuffix(".html");	   
 	    templateResolver.setTemplateMode(TemplateMode.HTML);	    
 	    templateResolver.setCharacterEncoding("UTF-8");
+	    templateResolver.setCacheable(true);
 	    return templateResolver;
 	}
 	
@@ -64,17 +59,16 @@ public class PayrollConfig implements WebMvcConfigurer {
 	    SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 	    templateEngine.setTemplateResolver(templateResolver());	  
 	    templateEngine.setEnableSpringELCompiler(true);
-	    return templateEngine;
+	    return templateEngine;    
 	}	
 	
-	 @Override
-	  public void configureViewResolvers(ViewResolverRegistry registry) {
-	        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-	        resolver.setTemplateEngine(templateEngine());
-	        resolver.setContentType("text/html; charset=UTF-8");	
-	        resolver.setCharacterEncoding("UTF-8");
-	        registry.viewResolver(resolver);
-	    }	
+	 @Bean
+	 public  ThymeleafViewResolver thymeleafViewResolver(){
+		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+	    resolver.setTemplateEngine(templateEngine());	
+	    resolver.setCharacterEncoding("UTF-8");	        
+	    return resolver;
+	 }
 	 
 	 @Bean
 	 public static PropertySourcesPlaceholderConfigurer properties() {
@@ -84,31 +78,13 @@ public class PayrollConfig implements WebMvcConfigurer {
 	     return configurer;
 	 }
 	 
-	 // Добавление локализации 
-	/* @Bean
-	 public LocaleResolver localeResolver() {
-		 SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-		 localeResolver.setDefaultLocale(new Locale("ru"));
-		 return localeResolver;		 
-	 }
-	 
-	 @Bean
-	  public LocaleChangeInterceptor localeChangeInterceptor() {
-	     LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-	     localeChangeInterceptor.setParamName("lang");
-	      return localeChangeInterceptor;
-	  }
-
-	  @Override
-	  public void addInterceptors(InterceptorRegistry registry) {
-	      registry.addInterceptor(localeChangeInterceptor());
-	  } */
+	
 	 
 // ------------------ Hibernate -------------------------------------------------------
 	 @Bean
 	 public DataSource dataSource() {
-			ComboPooledDataSource dataSource = new ComboPooledDataSource();
-			try {
+			ComboPooledDataSource dataSource = new ComboPooledDataSource();				
+			try {				
 				dataSource.setDriverClass("org.postgresql.Driver");
 				dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/payroll_db");
 				dataSource.setUser("postgres");
@@ -138,7 +114,7 @@ public class PayrollConfig implements WebMvcConfigurer {
 			return transactionManager;
 		}
 		
-		//<context:property-placeholder location="classpath*:my.properties"/>
+		
 		
 		//Регистрация обработчиков для обслуживания статических ресурсов 
 		 @Override
@@ -148,10 +124,34 @@ public class PayrollConfig implements WebMvcConfigurer {
 			 	registry.addResourceHandler("/resources/**")
 			 			.addResourceLocations("/resources/");
 		    }
+
+// - ------------ Комментарии -----------------------		 
 		 
+		 // Добавление локализации 
+		 /*	 @Bean
+		 	 public LocaleResolver localeResolver() {
+		 		 SessionLocaleResolver localeResolver = new SessionLocaleResolver();
+		 		 localeResolver.setDefaultLocale(new Locale("ru"));
+		 		 return localeResolver;		 
+		 	 }
+		 	 
+		 	 @Bean
+		 	  public LocaleChangeInterceptor localeChangeInterceptor() {
+		 	     LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+		 	     localeChangeInterceptor.setParamName("lang");
+		 	      return localeChangeInterceptor;
+		 	  }
+
+		 	  @Override
+		 	  public void addInterceptors(InterceptorRegistry registry) {
+		 	      registry.addInterceptor(localeChangeInterceptor());
+		 	  } */
 //----------------Spring REST ----------------------
-		 public RestTemplate restTemplate() {
+/*		 public RestTemplate restTemplate() {
 			 RestTemplate restTemplate = new RestTemplate();
 			 return restTemplate;
-		 }
+		 }*/
 }
+
+
+

@@ -1,40 +1,42 @@
 package com.github.yury1991.PayrollWeb.models;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+
 @Component
+@PropertySource("classpath:payment.properties")
 public class Payment {	
-	// зарплатная ставка с продаж
-	@Value("${payment.property.salesPayment}")
-	private String salesPayment;
-	// зарплатная ставка от работы с клиента	
-	@Value("${payment.property.clientPayment}")
-	private String clientPayment;
-	// зарплатная ставка за бизнесс-процессы	
-	@Value("${payment.property.businessPayment}")
-	private String businessPayment;
-	// зарплатная ставка за работу на складе	
-	@Value("${payment.property.stockPayment}")
-	private  String stockPayment;	
 	
-	/* зарплатная ставка с продаж
-		@Value("${payment.property.salesPayment}")
-		private double salesPayment;
-		// зарплатная ставка от работы с клиента	
-		@Value("${payment.property.clientPayment}")
-		private double clientPayment;
-		// зарплатная ставка за бизнесс-процессы	
-		@Value("${payment.property.businessPayment}")
-		private double businessPayment;
+	// зарплатная ставка с продаж	
+		@Value("${payment.salesPayment}")
+		private String salesPayment;
+			
+		// зарплатная ставка от работы с клиентом	
+		@Value("${payment.clientPayment}")
+		private String clientPayment;
+			
+		// зарплатная ставка за бизнесс-процессы
+		@Value("${payment.businessPayment}")
+		private String businessPayment;
+			
 		// зарплатная ставка за работу на складе	
-		@Value("${payment.property.stockPayment}")
-		private double stockPayment;	*/
-	
+		@Value("${payment.stockPayment}")
+		private  String stockPayment;
 	
 	public Payment() {
 		
 	}
+	
+	@Autowired
+	public Payment(String salesPayment, String  clientPayment, String  businessPayment, String  stockPayment) {
+		this.salesPayment = salesPayment;
+		this.clientPayment = clientPayment;
+		this.businessPayment = businessPayment;
+		this.stockPayment = stockPayment;
+	}		
 	
 	@Override
 	public String toString() {		
@@ -72,8 +74,8 @@ public class Payment {
 	public void setStockPayment(String stockPayment) {
 		this.stockPayment = stockPayment;
 	}
-	
-	/*public double getSalesPayment() {
+	/*
+	public double getSalesPayment() {
 		return salesPayment;
 	}
 	public void setSalesPayment(double	 salesPayment) {

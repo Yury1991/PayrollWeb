@@ -21,9 +21,11 @@ public class Solution  {
 		Manager manager = new Manager("Иванов", "Иван", "Иванович", managerSalesProfit, managerClientProfit, managerBusinessProfit, managerPieceEquipmentProfit );
 		System.out.println(manager.toString());*/
 		
-		PaymentDAOImpl paymentDAOImpl = new PaymentDAOImpl();
-		Payment payment = paymentDAOImpl.getPayment();
-		System.out.println(payment.toString());
+		//PaymentDAOImpl paymentDAOImpl = new PaymentDAOImpl();
+		//Payment payment = paymentDAOImpl.getPayment();
+		Payment payment;
+		
+		System.out.println();
 		
 	}
 	

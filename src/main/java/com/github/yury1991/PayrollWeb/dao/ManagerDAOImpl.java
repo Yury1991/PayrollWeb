@@ -42,9 +42,7 @@ public class ManagerDAOImpl implements ManagerDAO{
 	public void updateManager(Manager manager, int id) {		
 		Session session = sessionFactory.getCurrentSession();		
 		Manager updatedManager =  getManager(id);
-		updatedManager.setSurname(manager.getSurname());
-		updatedManager.setName(manager.getName());
-		updatedManager.setPatronymic(manager.getPatronymic());
+		updatedManager.setFullName(manager.getFullName());		
 		session.saveOrUpdate(updatedManager);
 	}
 

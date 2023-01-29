@@ -10,29 +10,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "managers")
 public class Manager {
-//	private SalesProfit managerSalesProfit;
-//	private ClientProfit managerClientProfit;
-//	private BusinessProfit managerBusinessProfit;
-//	private PieceEquipmentProfit pieceEquipmentProfit;	
-	// флаг была ли работа на складе	
-//		private boolean isWarehouse;	
-	// уникальный идентификатор менеджера
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "id", nullable = false)
 	private int id;
 		
-	// фамилия менеджера
-	@Column(name = "Фамилия")
-	private String surname;
-	
-	// имя менеджера
-	@Column(name = "Имя")
-	private String name;
-	
-	// отчество менеджера
-	@Column(name = "Отчество")
-    private String patronymic;	
+	// ФИО менеджера	
+	@Column(name = "ФИО")
+	private String fullName;
 	
     // прибыль менеджера от продаж
 	@Column(name = "Продажи")
@@ -49,10 +35,14 @@ public class Manager {
 	// прибыль менеджера c продажи единицы оборудования 
 	@Column(name = "Оборудование")
 	private double equipmentProfit;	
-		
+	
+	
 	// прибыль менеджера за осуществление работы на складе	
 	@Column(name = "Склад")
 	private double warehousePayment;	
+	//зарплатные ставки менеджера
+	//private Payment managerPayment;
+	
 	
 	// зарплата менеджера за месяц
 	@Column(name = "Зарплата")
@@ -62,10 +52,8 @@ public class Manager {
 		
 	}
 	
-	public Manager(String surname, String name, String patronymic) {
-		this.surname = surname;
-		this.name = name;
-		this.patronymic = patronymic;
+	public Manager(String fullName) {
+		this.fullName = fullName;		
 		this.salesProfit = 0.00;
 		this.clientProfit = 0.00;
 		this.businessProfit = 0.00;
@@ -73,12 +61,10 @@ public class Manager {
 		this.managerSalary = 0.00;		
 	}
 	
-	public Manager(String surname, String name, String patronymic, 
+	public Manager(String fullName,
 					double salesProfit,	double clientProfit, 
 					double businessProfit, double equipmentProfit, double managerSalary) {
-		this.surname = surname;
-		this.name = name;
-		this.patronymic = patronymic;
+		this.fullName = fullName;		
 		this.salesProfit = salesProfit;
 		this.clientProfit = clientProfit;
 		this.businessProfit = businessProfit;
@@ -93,26 +79,12 @@ public class Manager {
 		this.id = id;
 	}	
 	
-	public String getSurname() {
-		return surname;
+	public String getFullName() {
+		return fullName;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}	
-	
-	public String getPatronymic() {
-		return patronymic;
-	}
-	public void setPatronymic(String patronymic) {
-		this.patronymic = patronymic;
-	}
 	
 	public double getClientProfit() {
 		return clientProfit;
@@ -138,32 +110,13 @@ public class Manager {
 	public double getEquipmentProfit() {
 		return equipmentProfit;
 	}
-	public void setEquiomentProfit(double equipmentProfit) {
+	public void setEquipmentProfit(double equipmentProfit) {
 		this.equipmentProfit = equipmentProfit;
 	}
 	
-	/*public boolean getIsWarehouse() {
-		return isWarehouse;
-	}
-	public void setIsWarehouse(boolean isWarehouse) {
-		this.isWarehouse = isWarehouse;
-	}	*/
 	
-	public double getWarehousePayment() {
-		return warehousePayment;
-	/*	if(isWarehouse) {
-			return warehousePayment;
-		} else {
-			return 0;
-		}	*/	
-	}	
-	public void setWarehousePayment() {
-		this.warehousePayment = 7000;
-	}	
 		
-	public double getManagerSalary() {
-	/*	managerSalary = salesProfit + clientProfit + 
-				businessProfit + equipmentProfit;*/
+	public double getManagerSalary() {	
 		return managerSalary;
 	}	
 	public void setManagerSalary(double managerSalary) {
@@ -172,7 +125,6 @@ public class Manager {
 	
 	@Override
 	public String toString() {
-		return "Менеджер: " + this.surname + " "+ this.name + " " + this.patronymic + '\''+ 
-				" " + "итоговая зарплата за месяц: " + this.getManagerSalary();
+		return "Менеджер: " + this.fullName + " " + "итоговая зарплата за месяц: " + this.getManagerSalary();
 	}	
 }

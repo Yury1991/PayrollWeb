@@ -5,7 +5,16 @@
 		<title>Зарплатная форма</title>		
 	</head>
 	
-	<body>	
-	<h2> Форма расчета зарплаты </h2>
-	</body>
+	<h1>Добавление менеджера</h1>
+		<form th:method = "POST" th:action = "@{/api/managers}" th:object = "${manager}" >	
+			<div class = "field">
+				<label for ="fullName">ФИО менеджера</label>		
+				<input type = "text" th:field = "*{fullName}" id = "fullName"/>
+				<br><br>				
+				<input type = "submit" class = "btn-green" style = "font-size:20px" 
+					value = "Сохранить"/>	
+				<br><br>
+				<a th:href = "@{/api/managers}"	class = "button">Назад</a>
+			</div>
+		</form>		
 </html>

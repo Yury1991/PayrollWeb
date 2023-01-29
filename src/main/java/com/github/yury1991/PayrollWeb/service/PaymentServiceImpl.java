@@ -19,4 +19,10 @@ public class PaymentServiceImpl implements PaymentService{
 		return paymentDAO.getPayment();
 	}
 
+	@Override
+	public void updateManager(Payment payment) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

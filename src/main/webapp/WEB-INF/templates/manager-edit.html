@@ -11,21 +11,14 @@
 		<h1>Изменение менеджера</h1>
 		<form th:method = "PATCH" th:action = "@{/api/managers/{id}(id = ${manager.getId()})}" th:object = "${manager}" >	
 			<div class = "field">
-				<label for="surname">Фамилия</label>		
-				<input type = "text" th:field = "*{surname}"  id = "surname"/>
-				<br><br>
-				<label for="name" >Имя</label>	
-				<input type = "text" th:field = "*{name}"  id = "name"/>
-				<br><br>
-				<label for="patronymic">Отчество</label>
-				<input type = "text" th:field = "*{patronymic}" id = "patronymic"/>
-				<br><br>
+				<label for="fullName">ФИО</label>		
+				<input type = "text" th:field = "*{fullName}"  id = "fullName"/>
+				<br><br>				
 				<input type = "submit" class = "btn-green" style = "font-size:20px" 
 					value = "Изменить"/>	
 				<br><br>
 				<a th:href = "@{/api/managers}"	 class = "button">Назад</a>
 			</div>
-		</form>
-		
+		</form>		
 	</body>
 </html>

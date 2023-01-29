@@ -4,5 +4,6 @@ import com.github.yury1991.PayrollWeb.models.Payment;
 
 
 public interface PaymentService {
-	public Payment getPayment();
+	public Payment getPayment();	
+	public void updateManager(Payment payment);
 }

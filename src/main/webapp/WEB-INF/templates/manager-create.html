@@ -11,15 +11,9 @@
 		<h1>Добавление менеджера</h1>
 		<form th:method = "POST" th:action = "@{/api/managers}" th:object = "${manager}" >	
 			<div class = "field">
-				<label for ="surname">Фамилия</label>		
-				<input type = "text" th:field = "*{surname}" id = "surname"/>
-				<br><br>
-				<label for ="name">Имя</label>	
-				<input type = "text" th:field = "*{name}" id = "name"/>
-				<br><br>
-				<label for = "patronymic">Отчество</label>
-				<input type = "text" th:field = "*{patronymic}" id = "patronymic"/>
-				<br><br>
+				<label for ="fullName">ФИО менеджера</label>		
+				<input type = "text" th:field = "*{fullName}" id = "fullName"/>
+				<br><br>				
 				<input type = "submit" class = "btn-green" style = "font-size:20px" 
 					value = "Сохранить"/>	
 				<br><br>

@@ -2,6 +2,7 @@ package com.github.yury1991.PayrollWeb.models;
 
 // коэффициент оценки бизнес-процессов
 public class BusinessRate implements Rate {
+	
 	// флаг были ли ошибки
 	private boolean isMistake;
 	// флаг были ли незначительные ошибки	

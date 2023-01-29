@@ -17,24 +17,26 @@
 		</tr>
 		<tr> 
 			<th>No</th>			
-			<th>Фамилия</th>
-			<th>Имя</th>
-			<th>Отчество</th>			
+			<th>ФИО</th>				
 		</tr>
 		<tr th:each = "manager: ${allManagers}">
 			<td th:text = "${manager.id}"></td>			
-			<td th:text = "${manager.surname}"></td>
-			<td th:text = "${manager.name}"></td>
-			<td th:text = "${manager.patronymic}"></td>		
-			<td>							
-				<div>	
-					<button class = "button">Рассчитать</button>		
-				</div>
+			<td th:text = "${manager.fullName}"></td>	
+			<td>			
+				<form th:method ="GET" th:action = "@{/api/managers/{id}/manager-info(id = ${manager.getId()})}" th:object = "${manager}" >
+					<input type = "submit"	 class = "button" value = "Просмотр" >
+				</form>	
+			</td>			
+			<td>			
+				<form th:method ="GET" th:action = "@{/api/managers/{id}/calculate(id = ${manager.getId()})}" th:object = "${manager}" >
+					<input type = "submit"	 class = "button" value = "Рассчитать" >
+				</form>	
 			</td>
 			<td>			
 				<form th:method ="GET" th:action = "@{/api/managers/{id}/edit(id = ${manager.getId()})}" th:object = "${manager}" >
 					<input type = "submit"	 class = "button" value = "Изменить" >
 				</form>		
+				
 			</td>
 			<td>
 				<div>
@@ -42,6 +44,7 @@
 					  	<input type = "submit" class = "btn-red" value = "Удалить" >				
 					</form>		
 				</div>				
+				
 			</td>
 		</tr>	
 	</table>
@@ -50,7 +53,6 @@
 		<tr height = "100px">			
 			<th>				
 				<a th:href = "@{/api/managers/new}">Добавить нового менеджера</a>				
-				
 			</th>		
 		</tr>
 	</table>
@@ -60,7 +62,7 @@
 	<table class = "center">
 		<tr>	
 			<th height = "100px">				
-				<a th:href = "@{/api}">Назад</a>		
+				<a th:href = "@{/api/}">Назад</a>		
 			</th>			
 		</tr>
 	</table>	
