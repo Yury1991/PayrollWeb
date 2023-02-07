@@ -12,16 +12,17 @@
 			<form th:method ="GET" th:action = "@{/api/settings/payments}" th:object = "${payment}" >
 				<div class ="field">
 					<label for="salesPayment">Продажи</label>
-					<input type = "text" th:text = "${salesPayment}"  id = "salesPayment"/>
+					<!-- <input type = "text" th:field = "*{fullName}"  id = "fullName"/> -->
+					<input type = "text" th:field = "${payment.salesPayment}" id = "salesPayment"/> <!--   id = "salesPayment"/> -->
 					<br><br>
 					<label for="clientPayment">Клиент</label>
-					<input type = "text" th:text = "${clientPayment}"  id = "clientPayment"/>
+					<input type = "text" th:field = "${payment.clientPayment}" id = "clientPayment"/><!--   id = "clientPayment"/> -->
 					<br><br>
 					<label for="businessPayment">Бизнес-процесс</label>
-					<input type = "text" th:text = "${businessPayment}"  id = "businessPayment"/>
+					<input type = "text" th:field = "${payment.businessPayment}" id = "businessPayment"/> <!--   id = "businessPayment"/> -->
 					<br><br>
 					<label for="stockPayment">Склад</label>
-					<input type = "text" th:text = "${stockPayment}"  id = "stockPayment"/>
+					<input type = "text" th:field = "${payment.stockPayment}" id = "stockPayment"/> <!--   id = "stockPayment"/> -->
 				</div>
 			</form>
 				

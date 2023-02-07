@@ -1,36 +1,27 @@
 package com.github.yury1991.PayrollWeb.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 
 @Component
-@PropertySource("classpath:payment.properties")
 public class Payment {	
 	
 	// зарплатная ставка с продаж	
-		@Value("${payment.salesPayment}")
-		private String salesPayment;
+	private String salesPayment;
 			
-		// зарплатная ставка от работы с клиентом	
-		@Value("${payment.clientPayment}")
-		private String clientPayment;
+	// зарплатная ставка от работы с клиентом	
+	private String clientPayment;
 			
-		// зарплатная ставка за бизнесс-процессы
-		@Value("${payment.businessPayment}")
-		private String businessPayment;
+	// зарплатная ставка за бизнесс-процессы
+	private String businessPayment;
 			
-		// зарплатная ставка за работу на складе	
-		@Value("${payment.stockPayment}")
-		private  String stockPayment;
+	// зарплатная ставка за работу на складе	
+	private  String stockPayment;
 	
 	public Payment() {
 		
 	}
 	
-	@Autowired
 	public Payment(String salesPayment, String  clientPayment, String  businessPayment, String  stockPayment) {
 		this.salesPayment = salesPayment;
 		this.clientPayment = clientPayment;
