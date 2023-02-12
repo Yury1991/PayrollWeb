@@ -1,5 +1,7 @@
 package com.github.yury1991.PayrollWeb.models;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,31 +24,34 @@ public class Manager {
 	
     // прибыль менеджера от продаж
 	@Column(name = "Продажи")
-	private double salesProfit;
+	private BigDecimal salesProfit;
 	
 	// прибыль менеджера от работы с клиентом
 	@Column(name = "Клиент")
-	private double clientProfit;
+	private BigDecimal clientProfit;
 	
 	// прибыль менеджера за осуществление бизнес-процессов
 	@Column(name = "Процесс")	
-	private double businessProfit;
+	private BigDecimal businessProfit;
 	
 	// прибыль менеджера c продажи единицы оборудования 
 	@Column(name = "Оборудование")
-	private double equipmentProfit;	
+	private BigDecimal equipmentProfit;	
 	
 	
 	// прибыль менеджера за осуществление работы на складе	
 	@Column(name = "Склад")
-	private double warehousePayment;	
+	private BigDecimal warehousePayment;	
+	
 	//зарплатные ставки менеджера
-	//private Payment managerPayment;
+	private Payment managerPayment;
+	
+	
 	
 	
 	// зарплата менеджера за месяц
 	@Column(name = "Зарплата")
-	private double managerSalary;	
+	private BigDecimal managerSalary;	
 	
 	public Manager() {
 		
@@ -54,16 +59,16 @@ public class Manager {
 	
 	public Manager(String fullName) {
 		this.fullName = fullName;		
-		this.salesProfit = 0.00;
-		this.clientProfit = 0.00;
-		this.businessProfit = 0.00;
-		this.equipmentProfit = 0.00;	
-		this.managerSalary = 0.00;		
+		this.salesProfit = new BigDecimal(0.00);
+		this.clientProfit = new BigDecimal(0.00);
+		this.businessProfit = new BigDecimal(0.00);
+		this.equipmentProfit = new BigDecimal(0.00);	
+		this.managerSalary = new BigDecimal(0.00);		
 	}
 	
 	public Manager(String fullName,
-					double salesProfit,	double clientProfit, 
-					double businessProfit, double equipmentProfit, double managerSalary) {
+			BigDecimal salesProfit,	BigDecimal clientProfit, 
+			BigDecimal businessProfit, BigDecimal equipmentProfit, BigDecimal managerSalary) {
 		this.fullName = fullName;		
 		this.salesProfit = salesProfit;
 		this.clientProfit = clientProfit;
@@ -86,45 +91,52 @@ public class Manager {
 		this.fullName = fullName;
 	}	
 	
-	public double getClientProfit() {
+	public BigDecimal getClientProfit() {
 		return clientProfit;
 	}
-	public void setClientProfit(double clientProfit) {
+	public void setClientProfit(BigDecimal clientProfit) {
 		this.clientProfit = clientProfit;
 	}
 	
-	public double getSalesProfit() {
+	public BigDecimal getSalesProfit() {
 		return salesProfit;
 	}
-	public void setSalesProfit(double salesProfit) {
+	public void setSalesProfit(BigDecimal salesProfit) {
 		this.salesProfit = salesProfit;
 	}
 	
-	public double getBusinessProfit() {
+	public BigDecimal getBusinessProfit() {
 		return businessProfit;	
 	}
-	public void setBusinessProfit(double businessProfit) {
+	public void setBusinessProfit(BigDecimal businessProfit) {
 		this.businessProfit = businessProfit;
 	}
 	
-	public double getEquipmentProfit() {
+	public BigDecimal getEquipmentProfit() {
 		return equipmentProfit;
 	}
-	public void setEquipmentProfit(double equipmentProfit) {
+	public void setEquipmentProfit(BigDecimal equipmentProfit) {
 		this.equipmentProfit = equipmentProfit;
-	}
-	
+	}	
 	
 		
-	public double getManagerSalary() {	
+	public BigDecimal getManagerSalary() {	
 		return managerSalary;
 	}	
-	public void setManagerSalary(double managerSalary) {
+	public void setManagerSalary(BigDecimal managerSalary) {
 		this.managerSalary = managerSalary;
 	}		
 	
 	@Override
 	public String toString() {
 		return "Менеджер: " + this.fullName + " " + "итоговая зарплата за месяц: " + this.getManagerSalary();
+	}
+
+	public Payment getManagerPayment() {
+		return managerPayment;
+	}
+
+	public void setManagerPayment(Payment managerPayment) {
+		this.managerPayment = managerPayment;
 	}	
 }

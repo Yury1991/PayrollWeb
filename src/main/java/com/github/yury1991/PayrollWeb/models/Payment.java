@@ -1,5 +1,7 @@
 package com.github.yury1991.PayrollWeb.models;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Component;
 
 
@@ -7,90 +9,57 @@ import org.springframework.stereotype.Component;
 public class Payment {	
 	
 	// зарплатная ставка с продаж	
-	private String salesPayment;
+	private BigDecimal salesPayment;
 			
 	// зарплатная ставка от работы с клиентом	
-	private String clientPayment;
+	private BigDecimal clientPayment;
 			
 	// зарплатная ставка за бизнесс-процессы
-	private String businessPayment;
+	private BigDecimal businessPayment;
 			
 	// зарплатная ставка за работу на складе	
-	private  String stockPayment;
+	private BigDecimal stockPayment;
 	
 	public Payment() {
 		
 	}
 	
-	public Payment(String salesPayment, String  clientPayment, String  businessPayment, String  stockPayment) {
+	public Payment(BigDecimal salesPayment, BigDecimal  clientPayment, BigDecimal  businessPayment, BigDecimal  stockPayment) {
 		this.salesPayment = salesPayment;
 		this.clientPayment = clientPayment;
 		this.businessPayment = businessPayment;
 		this.stockPayment = stockPayment;
-	}		
-	
-	@Override
-	public String toString() {		
-			return "Payment: " +  "Продажи " + getSalesPayment() +  " Клиент " +  getClientPayment()  + " Процесс " + getBusinessPayment() + " Склад " + getStockPayment();	
-	}
-	
-	public String getSalesPayment() {
+	}	
+
+	public BigDecimal getSalesPayment() {
 		return salesPayment;
 	}
 
-	public void setSalesPayment(String salesPayment) {
+	public void setSalesPayment(BigDecimal salesPayment) {
 		this.salesPayment = salesPayment;
 	}
 
-	public String getClientPayment() {
+	public BigDecimal getClientPayment() {
 		return clientPayment;
 	}
 
-	public void setClientPayment(String clientPayment) {
+	public void setClientPayment(BigDecimal clientPayment) {
 		this.clientPayment = clientPayment;
 	}
 
-	public String getBusinessPayment() {
+	public BigDecimal getBusinessPayment() {
 		return businessPayment;
 	}
 
-	public void setBusinessPayment(String businessPayment) {
+	public void setBusinessPayment(BigDecimal businessPayment) {
 		this.businessPayment = businessPayment;
 	}
 
-	public String getStockPayment() {
+	public BigDecimal getStockPayment() {
 		return stockPayment;
 	}
 
-	public void setStockPayment(String stockPayment) {
+	public void setStockPayment(BigDecimal stockPayment) {
 		this.stockPayment = stockPayment;
 	}
-	/*
-	public double getSalesPayment() {
-		return salesPayment;
-	}
-	public void setSalesPayment(double	 salesPayment) {
-		this.salesPayment = salesPayment;
-	}
-
-	public double getClientPayment() {
-		return clientPayment;
-	}
-	public void setClientPayment(double clientPayment) {
-		this.clientPayment = clientPayment;
-	}
-	
-	public double getBusinessPayment() {
-		return businessPayment;
-	}
-	public void setBusinessPayment(double businessPayment) {
-		this.businessPayment = businessPayment;
-	}
-	
-	public double getStockPayment() {
-		return stockPayment;
-	}
-	public void setStockPayment(double stockPayment) {
-		this.stockPayment = stockPayment;
-	}*/
 }

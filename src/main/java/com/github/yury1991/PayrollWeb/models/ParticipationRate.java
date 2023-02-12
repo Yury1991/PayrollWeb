@@ -3,19 +3,19 @@ package com.github.yury1991.PayrollWeb.models;
 // коэффициент участия в сделке
 public class ParticipationRate implements Rate {
 	// поиск клиента
-	private double findClientCoef;
+	private float findClientCoef;
 	// принятие позитивного решения
-	private double positiveDecisionCoef;
+	private float positiveDecisionCoef;
 	// ведение документацию
-	private double documentationCoef;
+	private float documentationCoef;
 	// ведение переговоров
-	private double discussionCoef;
+	private float discussionCoef;
 	// сопровождение сделки
-	private double maintenanceShipmentCoef;
+	private float maintenanceShipmentCoef;
 	// максимальное значение коэффициента участия
-	private final double MAX_PARTICIPATION_RATE = 1;
+	private float maxParticipationRate;
 	// минимальное значение коэффициента участия
-	private final double MIN_PARTICIPATION_RATE = 0.2;
+	private float minParticipationRate;
 	
 	private boolean isFindClient;
 	// принятие позитивного решения
@@ -44,55 +44,55 @@ public class ParticipationRate implements Rate {
 		}
 	}
 
-	public void setFindClientCoef(double findClientCoef) {
+	public void setFindClientCoef(float findClientCoef) {
 		this.findClientCoef = findClientCoef;	
 	}
 
-	public double getPositiveDecisionCoef() {
+	public float getPositiveDecisionCoef() {
 		if(isPositiveDecision) {
-			return 0.3;
+			return 0;
 		} else {
 			return 0;
 		}	
 	}
 
-	public void setPositiveDecisionCoef(double positiveDecisionCoef) {
+	public void setPositiveDecisionCoef(float positiveDecisionCoef) {
 		this.positiveDecisionCoef = positiveDecisionCoef;
 	}
 
-	public double getDocumentationCoef() {
+	public float getDocumentationCoef() {
 		if(isDocumentation) {
-			return 0.15;
+			return 0;
 		} else {
 			return 0;
 		}	
 	}
 
-	public void setDocumentationCoef(double documentationCoef) {
+	public void setDocumentationCoef(float documentationCoef) {
 		this.documentationCoef = documentationCoef;
 	}
 
-	public double getDiscussionCoef() {
+	public float getDiscussionCoef() {
 		if(isDiscussion) {
-			return 0.15;
+			return 0;
 		} else {
 			return 0;
 		}	
 	}
 
-	public void setDiscussionCoef(double discussionCoef) {
+	public void setDiscussionCoef(float discussionCoef) {
 		this.discussionCoef = discussionCoef;
 	}
 
-	public double getMaintenanceShipmentCoef() {
+	public float getMaintenanceShipmentCoef() {
 		if(isMaintenanceShipment) {
-			return 0.1;
+			return 0;
 		} else {
 			return 0;
 		}
 	}
 
-	public void setMaintenanceShipmentCoef(double maintenanceShipmentCoef) {
+	public void setMaintenanceShipmentCoef(float maintenanceShipmentCoef) {
 		this.maintenanceShipmentCoef = maintenanceShipmentCoef;
 	}
 
@@ -137,8 +137,8 @@ public class ParticipationRate implements Rate {
 	}
 	
 	@Override
-	public double getRate() {
-		return (MIN_PARTICIPATION_RATE + getFindClientCoef() + 
+	public float getRate() {
+		return (float) (minParticipationRate + getFindClientCoef() + 
 				getPositiveDecisionCoef() + getDiscussionCoef() + getDocumentationCoef() + getMaintenanceShipmentCoef());				
 	}	
 }

@@ -7,9 +7,9 @@ public class ClientRate implements Rate {
 	// количество жалоб
 	private int complaintQuantity;
 	// максимальное значение коэффициента лояльности 
-	private final double MAX_CLIENT_COEFFICIENT = 1.2;
+	private  float MAX_CLIENT_COEFFICIENT;
 	// значение одно жалобы
-	private final double COMPLAINT_COEFFICIENT = 0.1;	
+	private  float COMPLAINT_COEFFICIENT;	
 	
 	
 	public ClientRate(boolean isComplaint, int complaintQuantity) {
@@ -24,22 +24,22 @@ public class ClientRate implements Rate {
 	public void setIsComplaint(boolean isComplaint) {
 		this.isComplaint = isComplaint;
 	}
-	public double getComplaintQuantity() {
+	public float getComplaintQuantity() {
 		return complaintQuantity;
 	}
 	public void setComplaintQuantity(short complaintQuantity) {
 		this.complaintQuantity = complaintQuantity;
 	}
 		
-	public double getMAX_CLIENT_COEFFICIENT() {
+	public float getMAX_CLIENT_COEFFICIENT() {
 		return MAX_CLIENT_COEFFICIENT;
 	}
 
-	public double getRate() {		
+	public float getRate() {		
 		if(isComplaint == false) {
 			return MAX_CLIENT_COEFFICIENT;
 		} else {
-			return (MAX_CLIENT_COEFFICIENT - (complaintQuantity *
+			return (float) (MAX_CLIENT_COEFFICIENT - (complaintQuantity *
 					COMPLAINT_COEFFICIENT));
 		}		
 	}	

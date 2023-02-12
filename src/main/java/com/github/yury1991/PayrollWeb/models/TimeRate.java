@@ -9,7 +9,7 @@ public class TimeRate implements Rate {
 		this.calendarDays = calendarDays;
 	}
 	
-	public double getRate() {		
+	public float getRate() {		
 		return (workingDays/calendarDays);
 	}
 	public short getCalendarDays() {

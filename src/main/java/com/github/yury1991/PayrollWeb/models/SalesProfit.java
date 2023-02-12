@@ -1,25 +1,27 @@
 package com.github.yury1991.PayrollWeb.models;
 
+import java.math.BigDecimal;
+
 public class SalesProfit implements Profit{
 	
 	//зарплатная ставка для продаж
-	private double salaryRate;
+	private BigDecimal salaryRate;
 	// коэффициент с продаж
-	private SalesRate salesRate;
+	private SalesPercentage salesPercentage;
 	
-	public SalesProfit(double salaryRate, SalesRate salesRate) {		
+	public SalesProfit(BigDecimal salaryRate, SalesPercentage salesPercentage) {		
 		this.salaryRate = salaryRate;
-		this.salesRate = salesRate;
+		this.salesPercentage = salesPercentage;
 	}	
 	
-	public double getSalaryRate() {
+	public BigDecimal getSalaryRate() {
 		return salaryRate;
 	}
-	public void setSalaryRate(double salaryRate) {
+	public void setSalaryRate(BigDecimal salaryRate) {
 		this.salaryRate = salaryRate;
 	}
 	
-	public double getProfit() {		
-		return salaryRate * salesRate.getRate();
+	public BigDecimal getProfit() {		
+		return salaryRate.multiply(salesPercentage.getSalesPercentage());
 	}
 }

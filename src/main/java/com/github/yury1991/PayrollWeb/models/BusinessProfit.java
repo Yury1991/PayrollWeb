@@ -1,8 +1,11 @@
 package com.github.yury1991.PayrollWeb.models;
 
+import java.math.BigDecimal;
+
 public class BusinessProfit implements Profit {
+	
 	//зарплатная ставка за бизнес-процессы
-	private double businessPayment;
+	private BigDecimal businessPayment;
 	//Коэффициент оценки бизнес процессов
 	private BusinessRate businessRate;
 	// флаг были ли недочеты
@@ -13,7 +16,7 @@ public class BusinessProfit implements Profit {
 	private int defectCost ;
 	
 	
-	public BusinessProfit(double businessPayment, BusinessRate businessRate,
+	public BusinessProfit(BigDecimal businessPayment, BusinessRate businessRate,
 									boolean isDefect, int defectQuantity, int defectCost) {
 		this.businessPayment = businessPayment;
 		this.businessRate = businessRate;
@@ -21,10 +24,10 @@ public class BusinessProfit implements Profit {
 		this.defectCost = defectCost; 
 	}
 		
-	public double getBusinessPayment() {
+	public BigDecimal getBusinessPayment() {
 		return businessPayment;
 	}
-	public void setBusinessPayment(double businessPayment) {
+	public void setBusinessPayment(BigDecimal businessPayment) {
 		this.businessPayment = businessPayment;
 	}		
 	
@@ -57,9 +60,8 @@ public class BusinessProfit implements Profit {
 		return (defectQuantity * defectCost);
 	}
 	
-	public double getProfit() {		
-		return ((businessPayment * businessRate.getRate()) -
-				calculatePenaltyCost() );
+	public BigDecimal getProfit() {		
+		return null;
 	}
 
 }

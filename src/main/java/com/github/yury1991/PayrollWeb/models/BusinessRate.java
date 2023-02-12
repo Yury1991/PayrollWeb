@@ -8,11 +8,11 @@ public class BusinessRate implements Rate {
 	// флаг были ли незначительные ошибки	
 	private int mistakeQuantity;
 	// коэффициент ошибки штраф
-	private double mistakeCoef;
+	private float mistakeCoef;
 	// количество незначительных ошибок	
 	private final double BUSINESS_FULL_COEFFICIENT = 1.2 ;
 
-	public BusinessRate(boolean isMistake, int mistakeQuantity, double mistakeCoef) {
+	public BusinessRate(boolean isMistake, int mistakeQuantity, float mistakeCoef) {
 		this.isMistake = isMistake;		
 		this.mistakeQuantity = mistakeQuantity;	
 		this.mistakeCoef = mistakeCoef;
@@ -43,11 +43,11 @@ public class BusinessRate implements Rate {
 		public double getMistakeCoef() {
 		return mistakeCoef;
 	}
-	public void setMistakeCoef(double mistakeCoef) {
+	public void setMistakeCoef(float mistakeCoef) {
 		this.mistakeCoef = mistakeCoef;
 	}	
 			
-	public double getRate() {		
-		return (BUSINESS_FULL_COEFFICIENT - (getMistakeQuantity() * getMistakeCoef()));
+	public float getRate() {		
+		return (float) (BUSINESS_FULL_COEFFICIENT - (getMistakeQuantity() * getMistakeCoef()));
 	}	
 }
