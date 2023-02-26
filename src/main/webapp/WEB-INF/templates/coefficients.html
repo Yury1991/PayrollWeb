@@ -8,21 +8,20 @@
 	</head>
 	
 	<body>			
-		<h1>Зарплатные ставки</h1>
-			<form th:method ="GET" th:action = "@{/api/settings/payments}" th:object = "${payment}" >
+		<h1>Коэффициенты</h1>
+			<form th:method ="GET" th:action = "@{/api/settings/coeffcients}" th:object = "${Coeffcient}" >
 				<div class ="field">
-					<label for="salesPayment">Продажи</label>
+					<label for="ClientCoefficient">Клиент</label>
 					<!-- <input type = "text" th:field = "*{fullName}"  id = "fullName"/> -->
 					<input type = "text" th:field = "${payment.salesPayment}" id = "salesPayment"/> <!--   id = "salesPayment"/> -->
 					<br><br>
-					<label for="clientPayment">Клиент</label>
+					<label for="BusinessCoefficient">Бизнес-процессы</label>
 					<input type = "text" th:field = "${payment.clientPayment}" id = "clientPayment"/><!--   id = "clientPayment"/> -->
 					<br><br>
-					<label for="businessPayment">Бизнес-процесс</label>
+					<label for="ParticipationCoefficient">Участие</label>
 					<input type = "text" th:field = "${payment.businessPayment}" id = "businessPayment"/> <!--   id = "businessPayment"/> -->
 					<br><br>
-					<label for="stockPayment">Склад</label>
-					<input type = "text" th:field = "${payment.stockPayment}" id = "stockPayment"/> <!--   id = "stockPayment"/> -->
+					
 				</div>
 			</form>				
 				<br><br>

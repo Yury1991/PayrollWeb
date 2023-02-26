@@ -1,17 +1,14 @@
 package com.github.yury1991.PayrollWeb.models;
 
-public class TimeRate implements Rate {
+public class TimeCoefficient implements Coefficient {
 	private short calendarDays;	
 	private short workingDays;	
 	
-	public TimeRate(short workingDays, short calendarDays) {
+	public TimeCoefficient(short workingDays, short calendarDays) {
 		this.workingDays = workingDays;
 		this.calendarDays = calendarDays;
 	}
 	
-	public float getRate() {		
-		return (workingDays/calendarDays);
-	}
 	public short getCalendarDays() {
 		return calendarDays;
 	}
@@ -23,5 +20,15 @@ public class TimeRate implements Rate {
 	}
 	public void setWorkingDays(short workingDays) {
 		this.workingDays = workingDays;
+	}
+	
+	public float getMaxCoefficient() {		
+		return 0;
+	}
+	
+
+	@Override
+	public float calculateCoefficient() {
+		return (workingDays/calendarDays);
 	}
 }

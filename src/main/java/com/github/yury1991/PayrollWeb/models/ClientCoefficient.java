@@ -1,21 +1,25 @@
 package com.github.yury1991.PayrollWeb.models;
 
 // коэффициент лояльности клиента
-public class ClientRate implements Rate {
+public class ClientCoefficient implements Coefficient {
 	// флаг были ли ли жалобы
 	private boolean isComplaint;
 	// количество жалоб
 	private int complaintQuantity;
 	// максимальное значение коэффициента лояльности 
-	private  float MAX_CLIENT_COEFFICIENT;
+	private  float maxClientCoefficient;
 	// значение одно жалобы
-	private  float COMPLAINT_COEFFICIENT;	
+	private  float complaintCoeffcient;	
 	
-	
-	public ClientRate(boolean isComplaint, int complaintQuantity) {
-		this.isComplaint = isComplaint;
-		this.complaintQuantity = complaintQuantity;
+	public ClientCoefficient() {
+		
 	}
+	
+	
+	public ClientCoefficient(float maxClientCoefficient) {
+		this.maxClientCoefficient = maxClientCoefficient;
+	}
+	
 	
 	public boolean getIsComplaint() {
 		return isComplaint;
@@ -32,15 +36,20 @@ public class ClientRate implements Rate {
 	}
 		
 	public float getMAX_CLIENT_COEFFICIENT() {
-		return MAX_CLIENT_COEFFICIENT;
+		return maxClientCoefficient;
 	}
 
-	public float getRate() {		
+	public float getMaxCoefficient() {		
+			return maxClientCoefficient;
+	}
+
+	@Override
+	public float calculateCoefficient() {
 		if(isComplaint == false) {
-			return MAX_CLIENT_COEFFICIENT;
+			return maxClientCoefficient;
 		} else {
-			return (float) (MAX_CLIENT_COEFFICIENT - (complaintQuantity *
-					COMPLAINT_COEFFICIENT));
-		}		
+			return (float) (maxClientCoefficient - (complaintQuantity *
+					complaintCoeffcient));
+		}	
 	}	
 }

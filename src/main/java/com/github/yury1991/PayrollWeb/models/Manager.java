@@ -37,18 +37,13 @@ public class Manager {
 	// прибыль менеджера c продажи единицы оборудования 
 	@Column(name = "Оборудование")
 	private BigDecimal equipmentProfit;	
-	
-	
+		
 	// прибыль менеджера за осуществление работы на складе	
 	@Column(name = "Склад")
 	private BigDecimal warehousePayment;	
 	
-	//зарплатные ставки менеджера
-	private Payment managerPayment;
 	
-	
-	
-	
+		
 	// зарплата менеджера за месяц
 	@Column(name = "Зарплата")
 	private BigDecimal managerSalary;	
@@ -62,18 +57,18 @@ public class Manager {
 		this.salesProfit = new BigDecimal(0.00);
 		this.clientProfit = new BigDecimal(0.00);
 		this.businessProfit = new BigDecimal(0.00);
-		this.equipmentProfit = new BigDecimal(0.00);	
+		this.equipmentProfit = new BigDecimal(0.00);		
 		this.managerSalary = new BigDecimal(0.00);		
 	}
 	
 	public Manager(String fullName,
 			BigDecimal salesProfit,	BigDecimal clientProfit, 
-			BigDecimal businessProfit, BigDecimal equipmentProfit, BigDecimal managerSalary) {
+			BigDecimal businessProfit, BigDecimal equipmentProfit, Payment managerPayment, BigDecimal managerSalary) {
 		this.fullName = fullName;		
 		this.salesProfit = salesProfit;
 		this.clientProfit = clientProfit;
 		this.businessProfit = businessProfit;
-		this.equipmentProfit = equipmentProfit;	
+		this.equipmentProfit = equipmentProfit;			
 		this.managerSalary = managerSalary;		
 	}
 	
@@ -127,16 +122,12 @@ public class Manager {
 		this.managerSalary = managerSalary;
 	}		
 	
+	
+	
 	@Override
 	public String toString() {
 		return "Менеджер: " + this.fullName + " " + "итоговая зарплата за месяц: " + this.getManagerSalary();
 	}
 
-	public Payment getManagerPayment() {
-		return managerPayment;
-	}
-
-	public void setManagerPayment(Payment managerPayment) {
-		this.managerPayment = managerPayment;
-	}	
+	
 }

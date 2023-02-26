@@ -6,10 +6,10 @@ public class ClientProfit implements Profit {
 	// зарплатная ставка за работу с клиентом
 	private BigDecimal clientPayment;
 	//коэффициент лояльности клиента
-	private ClientRate clientRate;
+	private ClientCoefficient clientRate;
 	
 	
-	public ClientProfit(BigDecimal clientPayment, ClientRate clientRate) {
+	public ClientProfit(BigDecimal clientPayment, ClientCoefficient clientRate) {
 		this.clientPayment = clientPayment;
 		this.clientRate = clientRate;
 	}

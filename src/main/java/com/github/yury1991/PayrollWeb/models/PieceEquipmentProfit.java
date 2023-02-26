@@ -9,9 +9,9 @@ public class PieceEquipmentProfit implements Profit {
 	// процент менеджера от продаж
 	private float salesPercent;
 	// коэффициент участия
-	private ParticipationRate participationRate;
+	private ParticipationCoefficient participationRate;
 	
-	public PieceEquipmentProfit(BigDecimal totalSalesProfit, float salesPercent, ParticipationRate participationRate) {
+	public PieceEquipmentProfit(BigDecimal totalSalesProfit, float salesPercent, ParticipationCoefficient participationRate) {
 		this.totalSalesProfit = totalSalesProfit;
 		this.salesPercent = salesPercent;
 		this.participationRate = participationRate;
@@ -24,7 +24,7 @@ public class PieceEquipmentProfit implements Profit {
 		this.totalSalesProfit = totalSalesProfit;
 	}
 
-	public PieceEquipmentProfit(ParticipationRate participationRate) {
+	public PieceEquipmentProfit(ParticipationCoefficient participationRate) {
 		this.participationRate = participationRate;
 	}
 	public BigDecimal getProfit() {		

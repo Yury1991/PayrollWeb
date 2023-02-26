@@ -1,7 +1,7 @@
 package com.github.yury1991.PayrollWeb.models;
 
 // коэффициент оценки бизнес-процессов
-public class BusinessRate implements Rate {
+public class BusinessCoefficient implements Coefficient {
 	
 	// флаг были ли ошибки
 	private boolean isMistake;
@@ -10,9 +10,12 @@ public class BusinessRate implements Rate {
 	// коэффициент ошибки штраф
 	private float mistakeCoef;
 	// количество незначительных ошибок	
-	private final double BUSINESS_FULL_COEFFICIENT = 1.2 ;
-
-	public BusinessRate(boolean isMistake, int mistakeQuantity, float mistakeCoef) {
+	private float maxBusinessCoefficient;
+	
+	public BusinessCoefficient(float maxBusinessCoefficient) {
+		this.maxBusinessCoefficient = maxBusinessCoefficient;
+	}
+	public BusinessCoefficient(boolean isMistake, int mistakeQuantity, float mistakeCoef) {
 		this.isMistake = isMistake;		
 		this.mistakeQuantity = mistakeQuantity;	
 		this.mistakeCoef = mistakeCoef;
@@ -38,7 +41,7 @@ public class BusinessRate implements Rate {
 	}
 	
 	public double getBusinessFullCoefficient() {
-		return BUSINESS_FULL_COEFFICIENT;
+		return maxBusinessCoefficient;
 	}
 		public double getMistakeCoef() {
 		return mistakeCoef;
@@ -47,7 +50,14 @@ public class BusinessRate implements Rate {
 		this.mistakeCoef = mistakeCoef;
 	}	
 			
-	public float getRate() {		
-		return (float) (BUSINESS_FULL_COEFFICIENT - (getMistakeQuantity() * getMistakeCoef()));
-	}	
+	public float getMaxCoefficient() {		
+	    return maxBusinessCoefficient;
+	}
+		
+
+	@Override
+	public float calculateCoefficient() {
+		return (float) (maxBusinessCoefficient - (getMistakeQuantity() * getMistakeCoef()));
+	}
+		
 }

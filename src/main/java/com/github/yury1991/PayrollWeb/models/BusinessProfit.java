@@ -7,7 +7,7 @@ public class BusinessProfit implements Profit {
 	//зарплатная ставка за бизнес-процессы
 	private BigDecimal businessPayment;
 	//Коэффициент оценки бизнес процессов
-	private BusinessRate businessRate;
+	private BusinessCoefficient businessRate;
 	// флаг были ли недочеты
 	private boolean isDefect;
 	// количество недочетов
@@ -16,7 +16,7 @@ public class BusinessProfit implements Profit {
 	private int defectCost ;
 	
 	
-	public BusinessProfit(BigDecimal businessPayment, BusinessRate businessRate,
+	public BusinessProfit(BigDecimal businessPayment, BusinessCoefficient businessRate,
 									boolean isDefect, int defectQuantity, int defectCost) {
 		this.businessPayment = businessPayment;
 		this.businessRate = businessRate;

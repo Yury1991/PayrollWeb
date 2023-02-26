@@ -1,7 +1,7 @@
 package com.github.yury1991.PayrollWeb.models;
 
 // коэффициент участия в сделке
-public class ParticipationRate implements Rate {
+public class ParticipationCoefficient implements Coefficient {
 	// поиск клиента
 	private float findClientCoef;
 	// принятие позитивного решения
@@ -13,9 +13,9 @@ public class ParticipationRate implements Rate {
 	// сопровождение сделки
 	private float maintenanceShipmentCoef;
 	// максимальное значение коэффициента участия
-	private float maxParticipationRate;
+	private float maxParticipationCoefficient;
 	// минимальное значение коэффициента участия
-	private float minParticipationRate;
+	private float minParticipationCoefficient;
 	
 	private boolean isFindClient;
 	// принятие позитивного решения
@@ -27,7 +27,11 @@ public class ParticipationRate implements Rate {
 	// сопровождение сделки
 	private boolean isMaintenanceShipment;
 	
-	public ParticipationRate (boolean isFindClient, boolean isPositiveDecision, boolean isDocumentation, boolean isDiscussion,
+	public ParticipationCoefficient (float maxParticipationCoefficient) {
+		this.maxParticipationCoefficient = maxParticipationCoefficient;
+	}
+	
+	public ParticipationCoefficient (boolean isFindClient, boolean isPositiveDecision, boolean isDocumentation, boolean isDiscussion,
 								boolean isMaintenanceShipment) {
 		this.isFindClient = isFindClient;		
 		this.isPositiveDecision = isPositiveDecision;	
@@ -137,8 +141,13 @@ public class ParticipationRate implements Rate {
 	}
 	
 	@Override
-	public float getRate() {
-		return (float) (minParticipationRate + getFindClientCoef() + 
-				getPositiveDecisionCoef() + getDiscussionCoef() + getDocumentationCoef() + getMaintenanceShipmentCoef());				
+	public float getMaxCoefficient() {
+		return maxParticipationCoefficient;				
+	}
+
+	@Override
+	public float calculateCoefficient() {
+		return (float) (minParticipationCoefficient + getFindClientCoef() + 
+				getPositiveDecisionCoef() + getDiscussionCoef() + getDocumentationCoef() + getMaintenanceShipmentCoef());
 	}	
 }
