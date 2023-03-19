@@ -1,8 +1,20 @@
 package com.github.yury1991.PayrollWeb.models;
 
 
-import com.github.yury1991.PayrollWeb.dao.PaymentDAOImpl;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.github.yury1991.PayrollWeb.dao.PaymentDAOImpl;
+import com.github.yury1991.PayrollWeb.dao.CoefficientDAOImpl;
+import com.github.yury1991.PayrollWeb.service.CoefficientService;
+import com.github.yury1991.PayrollWeb.service.CoefficientServiceImpl;
 public class Solution  {
 	public static void main(String [] args) throws Exception {	
 		// создание коэффициента с продаж
@@ -23,13 +35,35 @@ public class Solution  {
 		
 		//PaymentDAOImpl paymentDAOImpl = new PaymentDAOImpl();
 		//Payment payment = paymentDAOImpl.getPayment();
-		Payment payment;
 		
-		System.out.println();
 		
+		
+		
+			/*Properties prop = new Properties();
+			try(InputStream input = new FileInputStream("/home/yury/eclipse-workspace/Projects/PayrollWeb/src/main/resources/coefficient.properties"))
+			{			
+				prop.load(input);			
+				clientCoefficient = new ClientCoefficient(Float.valueOf(prop.getProperty("coefficient.clientCoefficient")));
+				businessCoefficient = new BusinessCoefficient(Float.valueOf(prop.getProperty("coefficient.businessCoefficient")));
+				participationCoefficient = new ParticipationCoefficient(Float.valueOf(prop.getProperty("coefficient.participationCoefficient")));			
+				coefficient = new Coefficient(clientCoefficient, businessCoefficient, participationCoefficient);
+			} catch (FileNotFoundException ex) {
+				ex.printStackTrace();				 
+			}		
+			
+			System.out.println(coefficient.getMaxBusinessCoefficient()); */
+			
+		
+		    CoefficientServiceImpl coefficientServiceImpl = new  CoefficientServiceImpl();
+		    CoefficientDAOImpl coefficientDAOImpl = new  CoefficientDAOImpl();
+		
+			ClientCoefficient clientCoefficient = (ClientCoefficient) coefficientServiceImpl.getMaxCoefficients().get(0);
+			
+		/*	model.addAttribute("businessCoefficient", coefficientService.getMaxCoefficient().get(1));
+			model.addAttribute("participationCoefficient", coefficientService.getMaxCoefficient().get(2));*/
+			System.out.println(clientCoefficient.getMaxCoefficient());
+		
+		
+		   
 	}
-	
-	
-		
-	
 }

@@ -14,7 +14,6 @@ public class PaymentServiceImpl implements PaymentService{
 	PaymentDAO paymentDAO;
 
 	@Override
-//	@Transactional
 	public Payment getPayment() {		
 		return paymentDAO.getPayment();
 	}

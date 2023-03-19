@@ -10,11 +10,5 @@ public class SettingsController {
 	@GetMapping("/api/settings")
 	public String showSettings() {
 		return "settings";
-	}
-	
-	@GetMapping("/api/settings/coefficients")
-	public String getCoefficients() {
-		return "coefficients";
-	}
-	
+	}	
 }

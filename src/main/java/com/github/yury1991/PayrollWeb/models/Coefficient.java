@@ -1,97 +1,53 @@
 package com.github.yury1991.PayrollWeb.models;
 
-//Интерфейс коэффициента
-public interface Coefficient {
+import org.springframework.stereotype.Component;
+
+//Класс коэффициента, который содержит в себе всю информацию о коэффициентах
+@Component
+public class Coefficient {
+			
+	private ClientCoefficient clientCoefficient;
+	private BusinessCoefficient businessCoefficient;
+	private ParticipationCoefficient participationCoefficient;	
 	
-	public float getMaxCoefficient();
-	public float calculateCoefficient();
+	
+	public Coefficient() {
 		
-	/*private float maxClientCoefficient;
-	private float maxBusinessCoefficient;
-	private float maxParticipationCoefficient;
+	}
 	
-	private float clientComplaint;
-	
-	private float businessDisruption;
-	private float businessFlaw;
-	
-	private float 
-	
-
+	public Coefficient(ClientCoefficient clientCoefficient, BusinessCoefficient businessCoefficient, 
+			ParticipationCoefficient participationCoefficient) {
+		this.clientCoefficient = clientCoefficient;
+		this.businessCoefficient = businessCoefficient;
+		this.participationCoefficient = participationCoefficient;		
+	}
 	
 	
-	
-	public float getClientCoefficient() {
-		return maxClientCoefficient;
+	public ClientCoefficient getClientCoefficient() {
+		return clientCoefficient;
 	}
 
 
-
-	public void setClientCoefficient(float clientCoefficient) {
-		this.maxClientCoefficient = clientCoefficient;
+	public void setCientCoefficient(ClientCoefficient clientCoefficient) {
+		this.clientCoefficient = clientCoefficient;
 	}
 
 
-
-	public float getBusinessCoefficient() {
-		return maxBusinessCoefficient;
+	public BusinessCoefficient getBusinessCoefficient() {
+		return businessCoefficient;
 	}
 
 
+	public void setBusinessCoefficient(BusinessCoefficient businessCoefficient) {
+		this.businessCoefficient = businessCoefficient;
+	}
 
-	public void setBusinessCoefficient(float businessCoefficient) {
-		this.maxBusinessCoefficient = businessCoefficient;
+	public ParticipationCoefficient getParticipationCoefficient() {
+		return participationCoefficient;
 	}
 
 
-
-	public float getParticipationCoefficient() {
-		return maxParticipationCoefficient;
-	}
-
-
-
-	public void setParticipationCoefficient(float participationCoefficient) {
-		this.maxParticipationCoefficient = participationCoefficient;
-	}
-
-
-
-	public float getClientComplaint() {
-		return clientComplaint;
-	}
-
-
-
-	public void setClientComplaint(float clientComplaint) {
-		this.clientComplaint = clientComplaint;
-	}
-
-
-
-	public float getBusinessDisruption() {
-		return businessDisruption;
-	}
-
-
-
-	public void setBusinessDisruption(float businessDisruption) {
-		this.businessDisruption = businessDisruption;
-	}
-
-
-
-	public float getBusinessFlaw() {
-		return businessFlaw;
-	}
-
-
-
-	public void setBusinessFlaw(float businessFlaw) {
-		this.businessFlaw = businessFlaw;
-	}*/
-	
-	
-	
-	
+	public void setParticipationCoefficient(ParticipationCoefficient participationCoefficient) {
+		this.participationCoefficient = participationCoefficient;
+	}	
 }

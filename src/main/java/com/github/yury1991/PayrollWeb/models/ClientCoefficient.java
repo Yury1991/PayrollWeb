@@ -1,23 +1,37 @@
 package com.github.yury1991.PayrollWeb.models;
 
+import org.springframework.stereotype.Component;
+
 // коэффициент лояльности клиента
-public class ClientCoefficient implements Coefficient {
+@Component
+public class ClientCoefficient implements ICoefficient {
+	
+	// максимальное значение коэффициента лояльности 
+	private float maxClientCoefficient;
+	//макисмальный коэффициент
+	private float complaintCoefficient;	
 	// флаг были ли ли жалобы
 	private boolean isComplaint;
 	// количество жалоб
 	private int complaintQuantity;
-	// максимальное значение коэффициента лояльности 
-	private  float maxClientCoefficient;
-	// значение одно жалобы
-	private  float complaintCoeffcient;	
+	// одна жалоба
+	private float complaintValue;	
+	
 	
 	public ClientCoefficient() {
-		
-	}
-	
+		maxClientCoefficient = 0;
+		complaintCoefficient = 0;
+		isComplaint = false;
+		complaintQuantity = 0;
+		complaintValue = 0;		
+	}	
 	
 	public ClientCoefficient(float maxClientCoefficient) {
 		this.maxClientCoefficient = maxClientCoefficient;
+		complaintCoefficient = 0;
+		isComplaint = false;
+		complaintQuantity = 0;
+		complaintValue = 0;		
 	}
 	
 	
@@ -35,21 +49,33 @@ public class ClientCoefficient implements Coefficient {
 		this.complaintQuantity = complaintQuantity;
 	}
 		
-	public float getMAX_CLIENT_COEFFICIENT() {
-		return maxClientCoefficient;
-	}
-
+	@Override
 	public float getMaxCoefficient() {		
 			return maxClientCoefficient;
 	}
-
+	
+	public void setMaxCoefficient(float maxClientCoefficient) {
+		this.maxClientCoefficient = maxClientCoefficient;
+	}
+	
+	
 	@Override
 	public float calculateCoefficient() {
 		if(isComplaint == false) {
 			return maxClientCoefficient;
 		} else {
 			return (float) (maxClientCoefficient - (complaintQuantity *
-					complaintCoeffcient));
+					complaintCoefficient));
 		}	
+	}
+
+
+	public float getComplaintValue() {
+		return complaintValue;
+	}
+
+
+	public void setComplaintValue(float complaintValue) {
+		this.complaintValue = complaintValue;
 	}	
 }

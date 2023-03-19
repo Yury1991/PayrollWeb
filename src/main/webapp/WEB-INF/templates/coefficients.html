@@ -8,22 +8,31 @@
 	</head>
 	
 	<body>			
-		<h1>Коэффициенты</h1>
-			<form th:method ="GET" th:action = "@{/api/settings/coeffcients}" th:object = "${Coeffcient}" >
+		<h1>Максимальные коэффициенты</h1>
+			<form th:method ="GET" th:action = "@{/api/settings/coefficients}" th:object = "${clientCoefficient}" >
 				<div class ="field">
-					<label for="ClientCoefficient">Клиент</label>
-					<!-- <input type = "text" th:field = "*{fullName}"  id = "fullName"/> -->
-					<input type = "text" th:field = "${payment.salesPayment}" id = "salesPayment"/> <!--   id = "salesPayment"/> -->
-					<br><br>
-					<label for="BusinessCoefficient">Бизнес-процессы</label>
-					<input type = "text" th:field = "${payment.clientPayment}" id = "clientPayment"/><!--   id = "clientPayment"/> -->
-					<br><br>
-					<label for="ParticipationCoefficient">Участие</label>
-					<input type = "text" th:field = "${payment.businessPayment}" id = "businessPayment"/> <!--   id = "businessPayment"/> -->
-					<br><br>
-					
+					<label for="maxClientCoefficient">Клиент</label>					
+					<input type = "text" th:field = "${clientCoefficient}" 
+						id = "maxClientCoefficient"/> 
+					<br><br>							
 				</div>
-			</form>				
+			</form>		
+<!--  			<form th:method ="GET" th:action = "@{/api/settings/coefficients}" th:object = "${businessCoefficient}" >
+				<div class ="field">					
+					<label for="businessCoefficient">Бизнес-процессы</label>
+					<input type = "text" th:field = "${businessCoefficient.maxBusinessCoefficient}" 
+						id = "businessCoefficient"/>
+					<br><br>									
+				</div>
+			</form>		
+			<form th:method ="GET" th:action = "@{/api/settings/coefficients}" th:object = "${participationCoefficient}" >
+				<div class ="field">					
+					<label for="participationCoefficient">Участие</label>
+					<input type = "text" th:field = "${participationCoefficient.maxParticipationCoefficient}" 
+						id = "participationCoefficient"/>
+					<br><br>					
+				</div>
+			</form>			-->	
 				<br><br>
 				<input type="submit" class = "btn-green" style = "font-size:20px" 
 					value = "Изменить"/>	

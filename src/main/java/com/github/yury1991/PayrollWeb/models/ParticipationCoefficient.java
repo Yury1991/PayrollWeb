@@ -1,46 +1,66 @@
 package com.github.yury1991.PayrollWeb.models;
 
+import org.springframework.stereotype.Component;
+
 // коэффициент участия в сделке
-public class ParticipationCoefficient implements Coefficient {
-	// поиск клиента
-	private float findClientCoef;
-	// принятие позитивного решения
-	private float positiveDecisionCoef;
-	// ведение документацию
-	private float documentationCoef;
-	// ведение переговоров
-	private float discussionCoef;
-	// сопровождение сделки
-	private float maintenanceShipmentCoef;
-	// максимальное значение коэффициента участия
-	private float maxParticipationCoefficient;
-	// минимальное значение коэффициента участия
-	private float minParticipationCoefficient;
+// класс имеет 5 пар - boolean - float, в будущем имеет смысл использовать Map
+@Component
+public class ParticipationCoefficient implements ICoefficient{
 	
+	// максимальное значение коэффициента участия
+	private float maxParticipationCoefficient;	
+	// поиск клиента
+	private float findClientValue;
+	// флаг был ли осуществлен поиск клиента
 	private boolean isFindClient;
 	// принятие позитивного решения
+	private float positiveDecisionValue;
+	// принятие позитивного решения
 	private boolean isPositiveDecision;
-	// ведение документацию
+	// ведение документации
+	private float documentationValue;
+	// флаг было ли осуществлено ведение документацию
 	private boolean isDocumentation;
 	// ведение переговоров
-	private boolean isDiscussion;
+	private float discussionValue;
+	// ведение переговоров
+	private boolean isDiscussion;		
+	// сопровождение сделки
+	private float maintenanceShipmentValue;
 	// сопровождение сделки
 	private boolean isMaintenanceShipment;
+
+	
+	public ParticipationCoefficient () {
+		maxParticipationCoefficient = 0;
+		findClientValue = 0;
+		isFindClient = false;
+		positiveDecisionValue = 0;
+		isPositiveDecision = false;
+		documentationValue = 0;
+		isDocumentation = false;
+		discussionValue = 0;
+		isDiscussion = false;
+		maintenanceShipmentValue = 0;
+		isMaintenanceShipment = false;		
+	}
 	
 	public ParticipationCoefficient (float maxParticipationCoefficient) {
 		this.maxParticipationCoefficient = maxParticipationCoefficient;
+		findClientValue = 0;
+		isFindClient = false;
+		positiveDecisionValue = 0;
+		isPositiveDecision = false;
+		documentationValue = 0;
+		isDocumentation = false;
+		discussionValue = 0;
+		isDiscussion = false;
+		maintenanceShipmentValue = 0;
+		isMaintenanceShipment = false;			
 	}
 	
-	public ParticipationCoefficient (boolean isFindClient, boolean isPositiveDecision, boolean isDocumentation, boolean isDiscussion,
-								boolean isMaintenanceShipment) {
-		this.isFindClient = isFindClient;		
-		this.isPositiveDecision = isPositiveDecision;	
-		this.isDocumentation = isDocumentation;		
-		this.isDiscussion = isDiscussion;	
-		this.isMaintenanceShipment = isMaintenanceShipment;		
-	}
-
-	public double getFindClientCoef() {
+	
+	public double getFindClientValue() {
 		if(isFindClient) {
 			return 0.3;
 		} else {
@@ -48,11 +68,11 @@ public class ParticipationCoefficient implements Coefficient {
 		}
 	}
 
-	public void setFindClientCoef(float findClientCoef) {
-		this.findClientCoef = findClientCoef;	
+	public void setFindClientValue(float findClientValue) {
+		this.findClientValue = findClientValue;	
 	}
 
-	public float getPositiveDecisionCoef() {
+	public float getPositiveDecisionValue() {
 		if(isPositiveDecision) {
 			return 0;
 		} else {
@@ -60,11 +80,11 @@ public class ParticipationCoefficient implements Coefficient {
 		}	
 	}
 
-	public void setPositiveDecisionCoef(float positiveDecisionCoef) {
-		this.positiveDecisionCoef = positiveDecisionCoef;
+	public void setPositiveDecisionValue(float positiveDecisionValue) {
+		this.positiveDecisionValue = positiveDecisionValue;
 	}
 
-	public float getDocumentationCoef() {
+	public float getDocumentationValue() {
 		if(isDocumentation) {
 			return 0;
 		} else {
@@ -72,11 +92,11 @@ public class ParticipationCoefficient implements Coefficient {
 		}	
 	}
 
-	public void setDocumentationCoef(float documentationCoef) {
-		this.documentationCoef = documentationCoef;
+	public void setDocumentationValue(float documentationValue) {
+		this.documentationValue = documentationValue;
 	}
 
-	public float getDiscussionCoef() {
+	public float getDiscussionValue() {
 		if(isDiscussion) {
 			return 0;
 		} else {
@@ -84,11 +104,11 @@ public class ParticipationCoefficient implements Coefficient {
 		}	
 	}
 
-	public void setDiscussionCoef(float discussionCoef) {
-		this.discussionCoef = discussionCoef;
+	public void setDiscussionValue(float discussionValue) {
+		this.discussionValue = discussionValue;
 	}
 
-	public float getMaintenanceShipmentCoef() {
+	public float getMaintenanceShipmentValue() {
 		if(isMaintenanceShipment) {
 			return 0;
 		} else {
@@ -96,8 +116,8 @@ public class ParticipationCoefficient implements Coefficient {
 		}
 	}
 
-	public void setMaintenanceShipmentCoef(float maintenanceShipmentCoef) {
-		this.maintenanceShipmentCoef = maintenanceShipmentCoef;
+	public void setMaintenanceShipmentValue(float maintenanceShipmentValue) {
+		this.maintenanceShipmentValue = maintenanceShipmentValue;
 	}
 
 	public boolean getIsFindClient() {
@@ -138,16 +158,21 @@ public class ParticipationCoefficient implements Coefficient {
 
 	public void setMaintenanceShipment(boolean isMaintenanceShipment) {
 		this.isMaintenanceShipment = isMaintenanceShipment;
-	}
+	}	
+
 	
-	@Override
-	public float getMaxCoefficient() {
-		return maxParticipationCoefficient;				
+	public float calculateCoefficient() {
+		return (float) (getFindClientValue() + 
+				getPositiveDecisionValue() + getDiscussionValue() + getDocumentationValue() + getMaintenanceShipmentValue());
+	}
+
+	public void setMaxParticipationCoefficient(float maxParticipationCoefficient) {
+		this.maxParticipationCoefficient = maxParticipationCoefficient;
 	}
 
 	@Override
-	public float calculateCoefficient() {
-		return (float) (minParticipationCoefficient + getFindClientCoef() + 
-				getPositiveDecisionCoef() + getDiscussionCoef() + getDocumentationCoef() + getMaintenanceShipmentCoef());
+	public float getMaxCoefficient() {
+		// TODO Auto-generated method stub
+		return maxParticipationCoefficient;
 	}	
 }
