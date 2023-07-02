@@ -17,7 +17,6 @@ public class ClientCoefficient implements ICoefficient {
 	// одна жалоба
 	private float complaintValue;	
 	
-	
 	public ClientCoefficient() {
 		maxClientCoefficient = 0;
 		complaintCoefficient = 0;
@@ -34,7 +33,6 @@ public class ClientCoefficient implements ICoefficient {
 		complaintValue = 0;		
 	}
 	
-	
 	public boolean getIsComplaint() {
 		return isComplaint;
 	}
@@ -42,9 +40,11 @@ public class ClientCoefficient implements ICoefficient {
 	public void setIsComplaint(boolean isComplaint) {
 		this.isComplaint = isComplaint;
 	}
+	
 	public float getComplaintQuantity() {
 		return complaintQuantity;
 	}
+	
 	public void setComplaintQuantity(short complaintQuantity) {
 		this.complaintQuantity = complaintQuantity;
 	}
@@ -56,8 +56,7 @@ public class ClientCoefficient implements ICoefficient {
 	
 	public void setMaxCoefficient(float maxClientCoefficient) {
 		this.maxClientCoefficient = maxClientCoefficient;
-	}
-	
+	}	
 	
 	@Override
 	public float calculateCoefficient() {
@@ -69,11 +68,9 @@ public class ClientCoefficient implements ICoefficient {
 		}	
 	}
 
-
 	public float getComplaintValue() {
 		return complaintValue;
 	}
-
 
 	public void setComplaintValue(float complaintValue) {
 		this.complaintValue = complaintValue;

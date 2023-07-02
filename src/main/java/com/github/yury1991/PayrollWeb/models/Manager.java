@@ -41,8 +41,6 @@ public class Manager {
 	// прибыль менеджера за осуществление работы на складе	
 	@Column(name = "Склад")
 	private BigDecimal warehousePayment;	
-	
-	
 		
 	// зарплата менеджера за месяц
 	@Column(name = "Зарплата")
@@ -54,11 +52,12 @@ public class Manager {
 	
 	public Manager(String fullName) {
 		this.fullName = fullName;		
-		this.salesProfit = new BigDecimal(0.00);
-		this.clientProfit = new BigDecimal(0.00);
-		this.businessProfit = new BigDecimal(0.00);
-		this.equipmentProfit = new BigDecimal(0.00);		
-		this.managerSalary = new BigDecimal(0.00);		
+		this.salesProfit = new BigDecimal("0.00");
+		this.clientProfit = new BigDecimal("0.00");
+		this.businessProfit = new BigDecimal("0.00");
+		this.equipmentProfit = new BigDecimal("0.00");	
+		this.warehousePayment = new BigDecimal("0.00");
+		this.managerSalary = new BigDecimal("0.00");		
 	}
 	
 	public Manager(String fullName,

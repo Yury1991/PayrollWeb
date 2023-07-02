@@ -13,7 +13,7 @@ public class BusinessProfit implements Profit {
 	// количество недочетов
 	private int defectQuantity;
 	// штраф за маленькую ошибку
-	private int defectCost ;
+	private int defectCost;
 	
 	
 	public BusinessProfit(BigDecimal businessPayment, BusinessCoefficient businessRate,
