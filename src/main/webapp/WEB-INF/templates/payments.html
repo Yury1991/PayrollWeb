@@ -2,33 +2,61 @@
 <html xmlns:th = "http://www.thymeleaf.org">
 	<head>
 		<meta charset = "UTF-8" name="viewport" content="width=device-width, initial-scale=1" >
-<!--  		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
-		 	th:href="@{/css/payroll.css}" /> -->
-		 <title>Информация</title>
+		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" th:href="@{/css/payroll.css}" /> 
+		<title>Коэффициенты</title>
 	</head>
 	
-	<body>			
-		<h1>Зарплатные ставки</h1>
-			<form th:method ="GET" th:action = "@{/api/settings/payments}" th:object = "${payment}" >
-				<div class ="field">
-					<label for="salesPayment">Продажи</label>
-					<!-- <input type = "text" th:field = "*{fullName}"  id = "fullName"/> -->
-					<input type = "text" th:field = "${payment.salesPayment}" id = "salesPayment"/> <!--   id = "salesPayment"/> -->
-					<br><br>
-					<label for="clientPayment">Клиент</label>
-					<input type = "text" th:field = "${payment.clientPayment}" id = "clientPayment"/><!--   id = "clientPayment"/> -->
-					<br><br>
-					<label for="businessPayment">Бизнес-процесс</label>
-					<input type = "text" th:field = "${payment.businessPayment}" id = "businessPayment"/> <!--   id = "businessPayment"/> -->
-					<br><br>
-					<label for="stockPayment">Склад</label>
-					<input type = "text" th:field = "${payment.stockPayment}" id = "stockPayment"/> <!--   id = "stockPayment"/> -->
-				</div>
-			</form>				
-				<br><br>
-				<input type="submit" class = "btn-green" style = "font-size:20px" 
-					value = "Изменить"/>	
-				<br><br>
-				<a th:href = "@{/api/settings}"	 class = "button">Назад</a>		
+	<body>	
+		<form th:method = "POST" th:action = "@{/api/settings/payments}" th:object = "${payment}" >
+		<table class="center">
+			<caption>Зарплатные ставки</caption>	
+			<tfoot align="center">
+				<tr height = "100px">				
+					<td> 
+						<div>
+							<a th:href = "@{/api/settings}"	 class = "button">Назад</a>	
+						</div>											
+					</td>							
+					<td> 
+							<input type = "submit" class = "btn-green" style = "font-size:20px" value = "Сохранить"/>			
+					</td>
+				</tr>
+			</tfoot>	
+			<tbody align="center">
+				<tr>
+					<td>Продажи</td>
+					<td>				
+						<div class="field">									
+							<input type="text" th:field="${payment.salesPayment}" id="salesPayment" /> 
+						</div>
+					</td>				
+				</tr>
+				<tr>
+					<td>Клиент</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${payment.loyaltyPayment}" id="loyaltyPayment" /> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Бизнес-процессы</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${payment.businessPayment}" id="businessPayment" /> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Склад</td>
+					<td>					
+						<div class="field">									
+							<input type="text" th:field="${payment.stockPayment}" id="stockPayment" /> 
+						</div>
+					</td>
+				</tr>
+			</tbody>				
+		</table>
+		</form>
 	</body>
 </html>

@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!-- Должно быть пять секци1 
+     1. Секция продажи.
+     2. Секция лояльности
+     3. Секция бизнес процессов
+     4. Секция участия
+     5. Секция склада-->
 <html xmlns:th = "http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
@@ -9,8 +15,17 @@
 	<body>		
 		<table border = "1">
 		<caption>Процент с продаж</caption>
+		
 			<tr>
-				<th>Общая выручка за месяц</th>
+				<td></td><div class = "field">
+				<label for ="monthRevenue">Общая выручка за месяц</label>		
+				<input type = "text" th:field = "" id = ""/>
+				<br><br>				
+				<input type = "submit" class = "btn-green" style = "font-size:20px" 
+					value = "Сохранить"/>	
+				<br><br>
+				<a th:href = "@{/api/managers}"	class = "button">Назад</a>
+			</div>
 				<th>Выручка за месяц за оборудование</th>
 				<th>План продаж складских позиций</th>
 				<th>Зарплатная ставка</th>

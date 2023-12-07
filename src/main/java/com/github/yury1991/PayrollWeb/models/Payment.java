@@ -12,7 +12,7 @@ public class Payment {
 	private BigDecimal salesPayment;
 			
 	// зарплатная ставка от работы с клиентом	
-	private BigDecimal clientPayment;
+	private BigDecimal loyaltyPayment;
 			
 	// зарплатная ставка за бизнесс-процессы
 	private BigDecimal businessPayment;
@@ -24,9 +24,9 @@ public class Payment {
 		
 	}
 	
-	public Payment(BigDecimal salesPayment, BigDecimal  clientPayment, BigDecimal  businessPayment, BigDecimal  stockPayment) {
+	public Payment(BigDecimal salesPayment, BigDecimal  clientPayment, BigDecimal  businessPayment, BigDecimal stockPayment) {
 		this.salesPayment = salesPayment;
-		this.clientPayment = clientPayment;
+		this.loyaltyPayment = clientPayment;
 		this.businessPayment = businessPayment;
 		this.stockPayment = stockPayment;
 	}	
@@ -39,12 +39,12 @@ public class Payment {
 		this.salesPayment = salesPayment;
 	}
 
-	public BigDecimal getClientPayment() {
-		return clientPayment;
+	public BigDecimal getLoyaltyPayment() {
+		return loyaltyPayment;
 	}
 
-	public void setClientPayment(BigDecimal clientPayment) {
-		this.clientPayment = clientPayment;
+	public void setLoyaltyPayment(BigDecimal clientPayment) {
+		this.loyaltyPayment = clientPayment;
 	}
 
 	public BigDecimal getBusinessPayment() {

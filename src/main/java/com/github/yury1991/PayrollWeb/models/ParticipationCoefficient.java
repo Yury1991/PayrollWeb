@@ -5,174 +5,158 @@ import org.springframework.stereotype.Component;
 // коэффициент участия в сделке
 // класс имеет 5 пар - boolean - float, в будущем имеет смысл использовать Map
 @Component
-public class ParticipationCoefficient implements ICoefficient{
+public class ParticipationCoefficient extends Coefficient{
 	
-	// максимальное значение коэффициента участия
-	private float maxParticipationCoefficient;	
-	// поиск клиента
-	private float findClientValue;
 	// флаг был ли осуществлен поиск клиента
-	private boolean isFindClient;
+	private boolean isClientSearch;
+	// поиск клиента
+	private float clientSearchCoefficient;
+	
 	// принятие позитивного решения
-	private float positiveDecisionValue;
+	private boolean isDecision;
 	// принятие позитивного решения
-	private boolean isPositiveDecision;
-	// ведение документации
-	private float documentationValue;
+	private float decisionCoefficient;
+	
 	// флаг было ли осуществлено ведение документацию
 	private boolean isDocumentation;
+	// ведение документации
+	private float documentationCoefficient;
+	
 	// ведение переговоров
-	private float discussionValue;
+	private boolean isNegotiation;	
 	// ведение переговоров
-	private boolean isDiscussion;		
+	private float negotiationCoefficient;
+	
 	// сопровождение сделки
-	private float maintenanceShipmentValue;
-	// сопровождение сделки
-	private boolean isMaintenanceShipment;
-
-	
-	public ParticipationCoefficient () {
-		maxParticipationCoefficient = 0;
-		findClientValue = 0;
-		isFindClient = false;
-		positiveDecisionValue = 0;
-		isPositiveDecision = false;
-		documentationValue = 0;
-		isDocumentation = false;
-		discussionValue = 0;
-		isDiscussion = false;
-		maintenanceShipmentValue = 0;
-		isMaintenanceShipment = false;		
-	}
-	
-	public ParticipationCoefficient (float maxParticipationCoefficient) {
-		this.maxParticipationCoefficient = maxParticipationCoefficient;
-		findClientValue = 0;
-		isFindClient = false;
-		positiveDecisionValue = 0;
-		isPositiveDecision = false;
-		documentationValue = 0;
-		isDocumentation = false;
-		discussionValue = 0;
-		isDiscussion = false;
-		maintenanceShipmentValue = 0;
-		isMaintenanceShipment = false;			
-	}
+	private boolean isShipment;
+	// сопровождение сделки	
+	private float shipmentCoefficient;
 	
 	
-	public double getFindClientValue() {
-		if(isFindClient) {
-			return 0.3;
-		} else {
-			return 0;
-		}
-	}
-
-	public void setFindClientValue(float findClientValue) {
-		this.findClientValue = findClientValue;	
-	}
-
-	public float getPositiveDecisionValue() {
-		if(isPositiveDecision) {
-			return 0;
-		} else {
-			return 0;
-		}	
-	}
-
-	public void setPositiveDecisionValue(float positiveDecisionValue) {
-		this.positiveDecisionValue = positiveDecisionValue;
-	}
-
-	public float getDocumentationValue() {
-		if(isDocumentation) {
-			return 0;
-		} else {
-			return 0;
-		}	
-	}
-
-	public void setDocumentationValue(float documentationValue) {
-		this.documentationValue = documentationValue;
-	}
-
-	public float getDiscussionValue() {
-		if(isDiscussion) {
-			return 0;
-		} else {
-			return 0;
-		}	
-	}
-
-	public void setDiscussionValue(float discussionValue) {
-		this.discussionValue = discussionValue;
-	}
-
-	public float getMaintenanceShipmentValue() {
-		if(isMaintenanceShipment) {
-			return 0;
-		} else {
-			return 0;
-		}
-	}
-
-	public void setMaintenanceShipmentValue(float maintenanceShipmentValue) {
-		this.maintenanceShipmentValue = maintenanceShipmentValue;
-	}
-
-	public boolean getIsFindClient() {
-		return isFindClient;
+	public ParticipationCoefficient() {
+		super(0f, 1.2f);		
 	}
 	
-	public void setFindClient(boolean isFindClient) {
-		this.isFindClient = isFindClient;
+	public ParticipationCoefficient(float minCoefficient, float maxCoefficient) {
+		super(minCoefficient, maxCoefficient);		
 	}
 	
-	public boolean getIsPositiveDecision() {
-		return isPositiveDecision;
+	public ParticipationCoefficient (	float minCoefficient,
+										float maxCoefficient,
+										float clientSearchCoefficient,
+										float decisionCoefficient,
+										float documentationCoefficient,
+										float negotiationCoefficient,
+										float shipmentCoefficient) {
+		super(minCoefficient, maxCoefficient);		
+		this.setClientSearchCoefficient(clientSearchCoefficient);		
+		this.setDecisionCoefficient(decisionCoefficient);
+		this.setDocumentationCoefficient(documentationCoefficient);			
+		this.setNegotiationCoefficient(negotiationCoefficient);		
+		this.setShipmentCoefficient(shipmentCoefficient);				
+	}
+	
+	public ParticipationCoefficient (float minCoefficient,
+					float maxCoefficient,
+					boolean isClientSearch,
+					boolean isDecision,
+					boolean isDocumentation,
+					boolean isNegotiation,
+					boolean isShipment) {
+		super(minCoefficient, maxCoefficient);		
+		this.isClientSearch = isClientSearch;
+		this.isDecision = isDecision;
+		this.isDocumentation = isDocumentation;
+		this.isNegotiation = isNegotiation;
+		this.isShipment = isShipment;				
 	}
 
-	public void setPositiveDecision(boolean isPositiveDecision) {
-		this.isPositiveDecision = isPositiveDecision;
+	@Override
+	public float calculateCoefficient() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
-	public boolean getIsDocumentation() {
+	//Методы доступа
+
+	public float getClientSearchCoefficient() {
+		return clientSearchCoefficient;
+	}
+
+	public void setClientSearchCoefficient(float clientSearchCoefficient) {
+		this.clientSearchCoefficient = clientSearchCoefficient;
+	}
+
+	public boolean isClientSearch() {
+		return isClientSearch;
+	}
+
+	public void setClientSearch(boolean isClientSearch) {
+		this.isClientSearch = isClientSearch;
+	}
+
+	public float getDecisionCoefficient() {
+		return decisionCoefficient;
+	}
+
+	public void setDecisionCoefficient(float decisionCoefficient) {
+		this.decisionCoefficient = decisionCoefficient;
+	}
+
+	public boolean isDecision() {
+		return isDecision;
+	}
+
+	public void setDecision(boolean isDecision) {
+		this.isDecision = isDecision;
+	}
+
+	public float getDocumentationCoefficient() {
+		return documentationCoefficient;
+	}
+
+	public void setDocumentationCoefficient(float documentationCoefficient) {
+		this.documentationCoefficient = documentationCoefficient;
+	}
+
+	public boolean isDocumentation() {
 		return isDocumentation;
 	}
-	
+
 	public void setDocumentation(boolean isDocumentation) {
 		this.isDocumentation = isDocumentation;
 	}
 
-	public boolean getIsDiscussion() {
-		return isDiscussion;
+	public float getNegotiationCoefficient() {
+		return negotiationCoefficient;
 	}
 
-	public void setDiscussion(boolean isDiscussion) {
-		this.isDiscussion = isDiscussion;
+	public void setNegotiationCoefficient(float negotiationCoefficient) {
+		this.negotiationCoefficient = negotiationCoefficient;
 	}
 
-	public boolean getIsMaintenanceShipment() {
-		return isMaintenanceShipment;
+	public boolean isNegotiation() {
+		return isNegotiation;
 	}
 
-	public void setMaintenanceShipment(boolean isMaintenanceShipment) {
-		this.isMaintenanceShipment = isMaintenanceShipment;
-	}	
+	public void setNegotiation(boolean isNegotiation) {
+		this.isNegotiation = isNegotiation;
+	}
 
+	public float getShipmentCoefficient() {
+		return shipmentCoefficient;
+	}
+
+	public void setShipmentCoefficient(float shipmentCoefficient) {
+		this.shipmentCoefficient = shipmentCoefficient;
+	}
+
+	public boolean isShipment() {
+		return isShipment;
+	}
+
+	public void setShipment(boolean isShipment) {
+		this.isShipment = isShipment;
+	}
 	
-	public float calculateCoefficient() {
-		return (float) (getFindClientValue() + 
-				getPositiveDecisionValue() + getDiscussionValue() + getDocumentationValue() + getMaintenanceShipmentValue());
-	}
-
-	public void setMaxParticipationCoefficient(float maxParticipationCoefficient) {
-		this.maxParticipationCoefficient = maxParticipationCoefficient;
-	}
-
-	@Override
-	public float getMaxCoefficient() {
-		// TODO Auto-generated method stub
-		return maxParticipationCoefficient;
-	}	
 }

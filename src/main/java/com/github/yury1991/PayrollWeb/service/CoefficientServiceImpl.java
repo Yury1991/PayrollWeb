@@ -1,21 +1,58 @@
 package com.github.yury1991.PayrollWeb.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.yury1991.PayrollWeb.dao.CoefficientDAO;
-import com.github.yury1991.PayrollWeb.models.ICoefficient;
+import com.github.yury1991.PayrollWeb.models.BusinessCoefficient;
+import com.github.yury1991.PayrollWeb.models.Coefficient;
+import com.github.yury1991.PayrollWeb.models.LoyaltyCoefficient;
+import com.github.yury1991.PayrollWeb.models.ParticipationCoefficient;
+
+
 
 @Service
 public class CoefficientServiceImpl implements CoefficientService {
 	
-	@Autowired
-	CoefficientDAO coefficientDAO;
+	private final CoefficientDAO coefficientDAO;
 	
-	@Override
-	public List<ICoefficient> getMaxCoefficients() {
-		return coefficientDAO.getMaxCoefficients();
+	@Autowired
+	public CoefficientServiceImpl(CoefficientDAO coefficientDAO) {
+		this.coefficientDAO = coefficientDAO;
 	}
+
+	@Override
+	public LoyaltyCoefficient getLoyaltyCoefficient() {
+		return coefficientDAO.getLoyaltyCoefficient();
+	}
+
+	@Override
+	public BusinessCoefficient getBusinessCoefficient() {
+		return coefficientDAO.getBusinessCoefficient();
+	}
+
+	@Override
+	public ParticipationCoefficient getParticipationCoefficient() {
+		return coefficientDAO.getParticipationCoefficient();
+	}
+
+	@Override
+	public void setLoyaltyCoefficient(LoyaltyCoefficient loyaltyCoefficient) {
+		coefficientDAO.setLoyaltyCoefficient(loyaltyCoefficient);
+		
+	}
+
+	@Override
+	public void setBusinessCoefficient(BusinessCoefficient businessCoefficient) {
+		coefficientDAO.setBusinessCoefficient(businessCoefficient);
+		
+	}
+
+	@Override
+	public void setParticipationCoefficient(ParticipationCoefficient participationCoefficient) {
+		coefficientDAO.setParticipationCoefficient(participationCoefficient);
+		
+	}
+	
+	
 }

@@ -2,41 +2,151 @@
 <html xmlns:th = "http://www.thymeleaf.org">
 	<head>
 		<meta charset = "UTF-8" name="viewport" content="width=device-width, initial-scale=1" >
-<!--  		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
-		 	th:href="@{/css/payroll.css}" /> -->
+  		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
+		 	th:href="@{/css/payroll.css}" /> 
 		 <title>Информация</title>
 	</head>
 	
-	<body>			
-		<h1>Максимальные коэффициенты</h1>
-			<form th:method ="GET" th:action = "@{/api/settings/coefficients}" th:object = "${clientCoefficient}" >
-				<div class ="field">
-					<label for="maxClientCoefficient">Клиент</label>					
-					<input type = "text" th:field = "${clientCoefficient}" 
-						id = "maxClientCoefficient"/> 
-					<br><br>							
-				</div>
-			</form>		
-<!--  			<form th:method ="GET" th:action = "@{/api/settings/coefficients}" th:object = "${businessCoefficient}" >
-				<div class ="field">					
-					<label for="businessCoefficient">Бизнес-процессы</label>
-					<input type = "text" th:field = "${businessCoefficient.maxBusinessCoefficient}" 
-						id = "businessCoefficient"/>
-					<br><br>									
-				</div>
-			</form>		
-			<form th:method ="GET" th:action = "@{/api/settings/coefficients}" th:object = "${participationCoefficient}" >
-				<div class ="field">					
-					<label for="participationCoefficient">Участие</label>
-					<input type = "text" th:field = "${participationCoefficient.maxParticipationCoefficient}" 
-						id = "participationCoefficient"/>
-					<br><br>					
-				</div>
-			</form>			-->	
-				<br><br>
-				<input type="submit" class = "btn-green" style = "font-size:20px" 
-					value = "Изменить"/>	
-				<br><br>
-				<a th:href = "@{/api/settings}"	 class = "button">Назад</a>		
+		
+		<form th:method = "POST" th:action = "@{/api/settings/coefficients}" th:object = "${loyaltyCoefficient}" >
+			<table class="center">
+				<caption>Коэффициент лояльности</caption>
+				<tr>
+					<td>Минимальный</td>
+					<td>						
+						<div class="field">									
+							<input type="text" th:field="${loyaltyCoefficient.minCoefficient}" id="loyaltyCoefficient.minLoyaltyCoefficient"/> 
+						</div>						
+					</td>
+				</tr>
+				<tr>
+					<td>Максимальный</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${loyaltyCoefficient.maxCoefficient}" id="loyaltyCoefficient.maxLoyaltyCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Жалоба</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${loyaltyCoefficient.complaintCoefficient}" id="loyaltyCoefficient.complaintCoefficient"/> 
+						</div>
+						</form>
+					</td>
+				</tr>				
+			</table>
+		</form>
+		
+		<form th:method = "POST" th:action = "@{/api/settings/coefficients}" th:object = "${businessCoefficient}" >
+			<table class ="center">			
+				<caption>Коэффициент бизнес-процессов</caption>
+				<tr>
+					<td>Минимальный</td>
+					<td>						
+						<div class="field">									
+							<input type="text" th:field="${businessCoefficient.minCoefficient}" id="businessCoefficient.minBusinessCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Максимальный</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${businessCoefficient.maxCoefficient}" id="businessCoefficient.maxBusinessCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Нарушение</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${businessCoefficient.mistakeCoefficient}" id="businessCoefficient.mistakeCoefficient"/> 
+						</div>
+					</td>
+				</tr>				
+				<tr>
+					<td>Недочет(руб.)</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${businessCoefficient.defectCost}" id="businessCoefficient.defectCost"/> 
+						</div>	
+						</form>				
+					</td>				
+				</tr>				
+			</table>
+		</form> 
+		<form th:method = "POST" th:action = "@{/api/settings/coefficients}" th:object = "${participationCoefficient}">
+			<table class ="center">
+				<caption>Коэффициент участия</caption>
+				<tr>
+					<td>Минимальный</td>
+					<td>						 
+						<div class="field">									
+							<input type="text" th:field="${participationCoefficient.minCoefficient}" id="participationCoefficient.minParticipationCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Максимальный</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${participationCoefficient.maxCoefficient}" id="participationCoefficient.maxParticipationCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Поиск клиента</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${participationCoefficient.clientSearchCoefficient}" id="participationCoefficient.clientSearchCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Принятие решения</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${participationCoefficient.decisionCoefficient}" id="participationCoefficient.decisionCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Ведение документации</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${participationCoefficient.documentationCoefficient}" id="participationCoefficient.documentationCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Ведение переговоров</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${participationCoefficient.negotiationCoefficient}" id="participationCoefficient.negotiationCoefficient"/> 
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>Отгрузка</td>
+					<td>
+						<div class="field">									
+							<input type="text" th:field="${participationCoefficient.shipmentCoefficient}" id="participationCoefficient.shipmentCoefficient"/> 
+						</div>
+					</td>
+				</tr> 
+				<tr height = "100px">
+					<td>
+						<input type="submit" class = "btn-green" style = "font-size:20px" value = "Сохранить"/>
+					</td>				
+				</tr>
+				<tr height = "100px">
+					<td>
+						<a th:href = "@{/api/settings}"	 class = "button">Назад</a>	
+					</td>
+				</tr>						
+			</table>	
+		</form>
 	</body>
 </html>

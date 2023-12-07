@@ -53,4 +53,11 @@ public class ManagerDAOImpl implements ManagerDAO{
 		query.setParameter("managerId", id);
 		query.executeUpdate();
 	}
+
+	@Override
+	public void calculateManager(Manager manager, int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Manager calculateManager = getManager(id);
+		
+	}
 }

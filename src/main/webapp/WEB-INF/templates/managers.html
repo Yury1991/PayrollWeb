@@ -3,8 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Выбор сотрудника</title>
-	<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
-		 	th:href="@{/css/payroll.css}" />
+	<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" th:href="@{/css/payroll.css}" />
 </head>
 <body>	
 	<table class =  "center">
@@ -32,27 +31,27 @@
 					<input type = "submit"	 class = "button" value = "Рассчитать" >
 				</form>	
 			</td>
-			<td>			
-				<form th:method ="GET" th:action = "@{/api/managers/{id}/edit(id = ${manager.getId()})}" th:object = "${manager}" >
+	<!--		<td>			
+				<form th:method ="GET" th:action = "@{/api/managers/{id}/manager-edit(id = ${manager.getId()})}" th:object = "${manager}" >
 					<input type = "submit"	 class = "button" value = "Изменить" >
 				</form>		
 				
-			</td>
+			</td> 
 			<td>
 				<div>
 					<form th:method = "DELETE" th:action = "@{/api/managers/{id}(id=${manager.getId()})}" >									 	
 					  	<input type = "submit" class = "btn-red" value = "Удалить" >				
 					</form>		
-				</div>				
+				</div>			
 				
-			</td>
+			</td> -->
 		</tr>	
 	</table>
 	<br>
 	<table class = "center">
 		<tr height = "100px">			
 			<th>				
-				<a th:href = "@{/api/managers/new}">Добавить нового менеджера</a>				
+				<a th:href = "@{/api/managers/manager-create}">Добавить нового менеджера</a>				
 			</th>		
 		</tr>
 	</table>

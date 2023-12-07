@@ -1,6 +1,6 @@
 package com.github.yury1991.PayrollWeb.models;
 
-public class TimeCoefficient extends Coefficient {
+public class TimeCoefficient  {
 	private short calendarDays;	
 	private short workingDays;	
 	
@@ -28,7 +28,7 @@ public class TimeCoefficient extends Coefficient {
 	
 
 	
-	public float calculateCoefficient() {
+	public double calculateCoefficient() {
 		return (workingDays/calendarDays);
 	}
 }

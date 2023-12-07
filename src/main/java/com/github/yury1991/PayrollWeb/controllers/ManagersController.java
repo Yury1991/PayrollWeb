@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 import com.github.yury1991.PayrollWeb.models.Manager;
+import com.github.yury1991.PayrollWeb.models.SalesProfit;
 import com.github.yury1991.PayrollWeb.service.ManagerService;
 
 @Controller
@@ -32,14 +33,14 @@ public class ManagersController {
 	}
 	
 	//Возвращает одного менеджера
-	@GetMapping("/api/managers/{id}")
+	@GetMapping("/api/managers/{id}/manager-info")
 	public String getManager(Model model, @PathVariable("id") int id) {
 		model.addAttribute("manager", managerService.getManager(id));
 		return "manager-info";
 	}
 	
 	//Добавление нового менеджера
-	@GetMapping("/api/managers/new")
+	@GetMapping("/api/managers/manager-create")
 	public String addNewManager(Model model) {	
 		model.addAttribute("manager", new Manager());
 		return "manager-create";
@@ -53,7 +54,7 @@ public class ManagersController {
 	}	
 	
 	//Изменение менеджера
-	@GetMapping("/api/managers/{id}/edit")
+	@GetMapping("/api/managers/{id}/manager-edit")
 	public String editManager(Model model, @PathVariable("id") int id) {
 		model.addAttribute("manager", managerService.getManager(id));
 		return "manager-edit";
@@ -74,9 +75,17 @@ public class ManagersController {
 	}
 	
 	//Переход к расчету зарплаты данного менеджера
-	@GetMapping("/api/managers/{id}/calculate")
+	@GetMapping("/api/managers/{id}/manager-calculate")
 	public String calculateManager(Model model, @PathVariable("id") int id) {
 		model.addAttribute("manager", managerService.getManager(id));
 		return "manager-calculate";
 	}
+	
+/*	@PostMapping("/api/managers/{id}/manager-calculate")
+	public String setProfits(@ModelAttribute("salesProfit") SalesProfit salesProfit) {
+		salesProfit.se
+		return "/api/managers/{id}/manager-calculate";
+	}*/
+	
+	
 }

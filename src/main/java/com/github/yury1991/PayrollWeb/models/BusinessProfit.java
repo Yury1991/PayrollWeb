@@ -2,34 +2,36 @@ package com.github.yury1991.PayrollWeb.models;
 
 import java.math.BigDecimal;
 
-public class BusinessProfit implements Profit {
+public class BusinessProfit extends Profit {
 	
-	//зарплатная ставка за бизнес-процессы
-	private BigDecimal businessPayment;
-	//Коэффициент оценки бизнес процессов
-	private BusinessCoefficient businessRate;
+	//коэффициент оценки бизнес процессов
+	private BusinessCoefficient businessCoefficient;
+	
 	// флаг были ли недочеты
 	private boolean isDefect;
+	
 	// количество недочетов
-	private int defectQuantity;
-	// штраф за маленькую ошибку
-	private int defectCost;
+	private short defectQuantity;
+	
+	// штраф за недочет
+	private BigDecimal defectCost;
 	
 	
-	public BusinessProfit(BigDecimal businessPayment, BusinessCoefficient businessRate,
-									boolean isDefect, int defectQuantity, int defectCost) {
-		this.businessPayment = businessPayment;
-		this.businessRate = businessRate;
+	public BusinessProfit(BusinessCoefficient businessCoefficient,
+						  boolean isDefect, short defectQuantity, BigDecimal defectCost) {		
+		this.businessCoefficient = businessCoefficient;
 		this.defectQuantity = defectQuantity;
 		this.defectCost = defectCost; 
 	}
 		
-	public BigDecimal getBusinessPayment() {
-		return businessPayment;
+	public BigDecimal calculateProfit() {		
+		if(isDefect == false) {
+			return super.getPayment().getBusinessPayment().multiply(BigDecimal.valueOf(businessCoefficient.calculateCoefficient()));
+		} else {
+			return super.getPayment().getBusinessPayment().multiply(BigDecimal.valueOf(businessCoefficient.calculateCoefficient())).subtract(defectCost.multiply(BigDecimal.valueOf(defectQuantity)));
+		}
+		
 	}
-	public void setBusinessPayment(BigDecimal businessPayment) {
-		this.businessPayment = businessPayment;
-	}		
 	
 	public boolean isDefect() {
 		return isDefect;
@@ -37,31 +39,18 @@ public class BusinessProfit implements Profit {
 	public void setDefect(boolean isDefect) {
 		this.isDefect = isDefect;
 	}
-	public int getDefectQuantity() {
-		if(isDefect == false ) {
-			return 0;
-		} else {
-			return defectQuantity;
-		}
-		
+	
+	public short getDefectQuantity() {		
+			return defectQuantity;		
 	}
-	public void setDefectQuantity(int defectQuantity) {
+	public void setDefectQuantity(short defectQuantity) {
 		this.defectQuantity = defectQuantity;
 	}
 	
-	public int getDefectCost() {
+	public BigDecimal getDefectCost() {
 		return defectCost;
 	}
-	public void setDefectCost(int defectCost) {
+	public void setDefectCost(BigDecimal defectCost) {
 		this.defectCost = defectCost;
 	}
-	
-	public double calculatePenaltyCost() {
-		return (defectQuantity * defectCost);
-	}
-	
-	public BigDecimal getProfit() {		
-		return null;
-	}
-
 }

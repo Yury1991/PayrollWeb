@@ -1,9 +1,19 @@
 package com.github.yury1991.PayrollWeb.service;
 
-import java.util.List;
+import com.github.yury1991.PayrollWeb.models.BusinessCoefficient;
+import com.github.yury1991.PayrollWeb.models.LoyaltyCoefficient;
+import com.github.yury1991.PayrollWeb.models.ParticipationCoefficient;
 
-import com.github.yury1991.PayrollWeb.models.ICoefficient;
 
 public interface CoefficientService {
-	public List<ICoefficient> getMaxCoefficients();
+	public LoyaltyCoefficient getLoyaltyCoefficient();
+	public BusinessCoefficient getBusinessCoefficient();
+	public ParticipationCoefficient getParticipationCoefficient();
+	
+	
+	
+	public void setLoyaltyCoefficient(LoyaltyCoefficient loyaltyCoefficient);
+	public void setBusinessCoefficient(BusinessCoefficient businessCoefficient);
+	public void setParticipationCoefficient(ParticipationCoefficient participationCoefficient);
+	
 }

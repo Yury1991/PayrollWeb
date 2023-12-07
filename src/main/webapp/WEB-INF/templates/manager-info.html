@@ -2,41 +2,51 @@
 
 <html xmlns:th = "http://www.thymeleaf.org">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css" 
-		 	th:href="@{/css/payroll.css}" />
+	<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css"  href="../../../css/payroll.css"	th:href="@{/css/payroll.css}" />
 		<title>Информация о менеджере</title>	
 </head>
 <body>
 	<h1 class = "center">Информация о менеджере</h1>
-		<table class =  "center">
-			<tr>
-				<th> 
-					<div>
-						<h2 align = "center">Информация о менеджере</h2>
-					</div>
-				</th>		
-			</tr>
-			<tr> 
-				<th>No</th>			
-				<th>ФИО</th>						
-			</tr>
-		<!--  	<tr th:method = "GET" th:object = "${manager}"> -->
-			<tr>
-				<td th:text = "${manager.getId()}">value</td>			
-				<td th:text = "${manager.getFullName()}">value</td>				
-			</tr>
-		</table>	
+		<form form th:method ="GET" th:action = "@{/api/managers/{id}(id = ${manager.getId()})/manager-info}" th:object = "${manager}"> <!-- /manager-info -->
+			<table class = "center">
+				<tr>
+					<th> 
+						<div>
+							<h2 align = "center">Информация о менеджере</h2>
+						</div>
+					</th>		
+				</tr>				
+				<tr>
+					<td th:text = "${manager.getId()}">value</td>								
+				</tr>
+				<tr>
+					<td th:text = "${manager.getFullName()}">value</td>	
+				</tr>				
+				<tr>
+					<td th:text = "${manager.getClientProfit()}">value</td>					
+				</tr>
+				<tr>
+					<td th:text = "${manager.getBusinessProfit()}">value</td>					
+				</tr>
+				<tr>
+					<td th:text = "${manager.getEquipmentProfit()}">value</td>					
+				</tr>
+				<tr>
+					<td th:text = "${manager.getStockPayment()}">value</td>					
+				</tr>
+				<tr>
+					<td th:text = "${manager.getManagerSalary()}">value</td>					
+				</tr>
+			</table>
+		</form>	
 		<br><br>
-		<table class = "center">
-		<tr>	
-			<th height = "100px">				
-				<a th:href = "@{/api/managers}">Назад</a>		
-			</th>			
-		</tr>
-	</table>			
-		
+			<table class = "center">
+				<tr>	
+					<th height = "100px">				
+						<a th:href = "@{/api/managers}">Назад</a>		
+					</th>			
+				</tr>
+			</table>		
 </body>
-
-
 </html>

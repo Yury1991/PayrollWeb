@@ -40,7 +40,7 @@ public class Manager {
 		
 	// прибыль менеджера за осуществление работы на складе	
 	@Column(name = "Склад")
-	private BigDecimal warehousePayment;	
+	private BigDecimal stockPayment;	
 		
 	// зарплата менеджера за месяц
 	@Column(name = "Зарплата")
@@ -56,13 +56,12 @@ public class Manager {
 		this.clientProfit = new BigDecimal("0.00");
 		this.businessProfit = new BigDecimal("0.00");
 		this.equipmentProfit = new BigDecimal("0.00");	
-		this.warehousePayment = new BigDecimal("0.00");
+		this.stockPayment = new BigDecimal("0.00");
 		this.managerSalary = new BigDecimal("0.00");		
 	}
 	
-	public Manager(String fullName,
-			BigDecimal salesProfit,	BigDecimal clientProfit, 
-			BigDecimal businessProfit, BigDecimal equipmentProfit, Payment managerPayment, BigDecimal managerSalary) {
+	public Manager(String fullName,	BigDecimal salesProfit,	BigDecimal clientProfit, BigDecimal businessProfit, 
+				   BigDecimal equipmentProfit, Payment managerPayment, BigDecimal managerSalary) {
 		this.fullName = fullName;		
 		this.salesProfit = salesProfit;
 		this.clientProfit = clientProfit;
@@ -70,6 +69,17 @@ public class Manager {
 		this.equipmentProfit = equipmentProfit;			
 		this.managerSalary = managerSalary;		
 	}
+	
+	public Manager(String fullName,	BigDecimal salesProfit,	BigDecimal clientProfit, BigDecimal businessProfit, 
+			   BigDecimal equipmentProfit, BigDecimal stockPayment, BigDecimal managerSalary) {
+	this.fullName = fullName;		
+	this.salesProfit = salesProfit;
+	this.clientProfit = clientProfit;
+	this.businessProfit = businessProfit;
+	this.equipmentProfit = equipmentProfit;		
+	this.stockPayment = stockPayment;
+	this.managerSalary = managerSalary;		
+}
 	
 	public int getId() {
 		return id;
@@ -113,6 +123,12 @@ public class Manager {
 		this.equipmentProfit = equipmentProfit;
 	}	
 	
+	public BigDecimal getStockPayment() {	
+		return stockPayment;
+	}	
+	public void setStockPayment(BigDecimal stockPayment) {
+		this.stockPayment = stockPayment;
+	}	
 		
 	public BigDecimal getManagerSalary() {	
 		return managerSalary;

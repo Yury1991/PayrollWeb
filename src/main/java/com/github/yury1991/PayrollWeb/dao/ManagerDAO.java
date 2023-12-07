@@ -10,4 +10,5 @@ public interface ManagerDAO {
 	public void saveManager(Manager manager);	
 	public void updateManager(Manager manager, int id);
 	public void deleteManager(int id);
+	public void calculateManager(Manager manager, int id);
 }

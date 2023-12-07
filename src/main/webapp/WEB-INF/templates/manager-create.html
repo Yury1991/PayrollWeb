@@ -9,7 +9,7 @@
 	
 	<body>			
 		<h1>Добавление менеджера</h1>
-		<form th:method = "POST" th:action = "@{/api/managers}" th:object = "${manager}" >	
+		<form th:method = "POST" th:action = "@{/api/managers/manager-create}" th:object = "${manager}" >	
 			<div class = "field">
 				<label for ="fullName">ФИО менеджера</label>		
 				<input type = "text" th:field = "*{fullName}" id = "fullName"/>

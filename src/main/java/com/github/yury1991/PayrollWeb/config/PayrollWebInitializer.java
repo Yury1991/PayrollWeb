@@ -20,12 +20,14 @@ public class PayrollWebInitializer extends AbstractAnnotationConfigDispatcherSer
 	protected Class<?>[] getRootConfigClasses() {		
 		return null;
 	}
-
+	
+	// Указание конфигурационного класса
 	@Override
 	protected Class<?>[] getServletConfigClasses() {		
 		return new Class [] {PayrollConfig.class};
 	}
 
+	//Все запросы персылаются на dispatcherServlet
 	@Override
 	protected String[] getServletMappings() {		
 		return new String [] {"/"};
@@ -64,6 +66,5 @@ public class PayrollWebInitializer extends AbstractAnnotationConfigDispatcherSer
 	private void registerHiddenFieldFilter(ServletContext aContext) {
 		aContext.addFilter("hiddenHttpMethodFilter", 
 				new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true, "/*");
-	}
-	
+	}	
 }

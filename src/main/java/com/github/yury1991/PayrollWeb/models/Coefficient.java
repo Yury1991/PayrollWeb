@@ -1,53 +1,29 @@
 package com.github.yury1991.PayrollWeb.models;
 
-import org.springframework.stereotype.Component;
-
-//Класс коэффициента, который содержит в себе всю информацию о коэффициентах
-@Component
-public class Coefficient {
-			
-	private ClientCoefficient clientCoefficient;
-	private BusinessCoefficient businessCoefficient;
-	private ParticipationCoefficient participationCoefficient;	
+public abstract class Coefficient {
+	private float minCoefficient;
+	private float maxCoefficient;
 	
+	public abstract float calculateCoefficient();
 	
-	public Coefficient() {
-		
+	public Coefficient(float minCoefficient, float maxCoefficient){
+		this.minCoefficient = minCoefficient;
+		this.maxCoefficient = maxCoefficient;
 	}
 	
-	public Coefficient(ClientCoefficient clientCoefficient, BusinessCoefficient businessCoefficient, 
-			ParticipationCoefficient participationCoefficient) {
-		this.clientCoefficient = clientCoefficient;
-		this.businessCoefficient = businessCoefficient;
-		this.participationCoefficient = participationCoefficient;		
-	}
-	
-	
-	public ClientCoefficient getClientCoefficient() {
-		return clientCoefficient;
+	public float getMinCoefficient() {
+		return minCoefficient;
 	}
 
-
-	public void setCientCoefficient(ClientCoefficient clientCoefficient) {
-		this.clientCoefficient = clientCoefficient;
+	public void setMinCoefficient(float minCoefficient) {
+		this.minCoefficient = minCoefficient;
 	}
 
-
-	public BusinessCoefficient getBusinessCoefficient() {
-		return businessCoefficient;
+	public float getMaxCoefficient() {
+		return maxCoefficient;
 	}
 
-
-	public void setBusinessCoefficient(BusinessCoefficient businessCoefficient) {
-		this.businessCoefficient = businessCoefficient;
-	}
-
-	public ParticipationCoefficient getParticipationCoefficient() {
-		return participationCoefficient;
-	}
-
-
-	public void setParticipationCoefficient(ParticipationCoefficient participationCoefficient) {
-		this.participationCoefficient = participationCoefficient;
+	public void setMaxCoefficient(float maxCoefficient) {
+		this.maxCoefficient = maxCoefficient;
 	}	
 }

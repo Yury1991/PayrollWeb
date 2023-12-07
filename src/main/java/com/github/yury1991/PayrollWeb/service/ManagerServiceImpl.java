@@ -11,9 +11,13 @@ import com.github.yury1991.PayrollWeb.models.Manager;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
+		
+	private final ManagerDAO managerDAO;
 	
 	@Autowired
-	private ManagerDAO managerDAO;
+	public ManagerServiceImpl(ManagerDAO managerDAO){
+		this.managerDAO = managerDAO;
+	}
 	
 	@Override
 	@Transactional
